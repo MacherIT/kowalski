@@ -24,7 +24,7 @@ class CuentaPropiasController < ApplicationController
     @cuenta_propia = CuentaPropia.new(cuenta_propia_params)
 
     if @cuenta_propia.save
-      redirect_to @cuenta_propia, notice: 'Cuenta propia was successfully created.'
+      redirect_to @cuenta_propia, notice: 'Cuenta propia fue creada satisfactoriamente.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class CuentaPropiasController < ApplicationController
   # PATCH/PUT /cuentas_propias/1
   def update
     if @cuenta_propia.update(cuenta_propia_params)
-      redirect_to @cuenta_propia, notice: 'Cuenta propia was successfully updated.'
+      redirect_to @cuenta_propia, notice: 'Cuenta propia fue guardada satisfactoriamente.'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class CuentaPropiasController < ApplicationController
   # DELETE /cuentas_propias/1
   def destroy
     @cuenta_propia.destroy
-    redirect_to cuentas_propias_url, notice: 'Cuenta propia was successfully destroyed.'
+    redirect_to cuentas_propias_url, notice: 'Cuenta propia fue eliminada satisfactoriamente.'
   end
 
   private

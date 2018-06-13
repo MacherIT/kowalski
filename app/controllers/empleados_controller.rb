@@ -36,7 +36,7 @@ class EmpleadosController < ApplicationController
     @empleado = Empleado.new(empleado_params)
 
     if @empleado.save
-      redirect_to @empleado, notice: 'Empleado was successfully created.'
+      redirect_to @empleado, notice: 'Empleado fue creado satisfactoriamente.'
     else
       render :new
     end
@@ -45,7 +45,7 @@ class EmpleadosController < ApplicationController
   # PATCH/PUT /empleados/1
   def update
     if @empleado.update(empleado_params)
-      redirect_to @empleado, notice: 'Empleado was successfully updated.'
+      redirect_to @empleado, notice: 'Empleado fue guardado satisfactoriamente.'
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class EmpleadosController < ApplicationController
   # DELETE /empleados/1
   def destroy
     @empleado.destroy
-    redirect_to empleados_url, notice: 'Empleado was successfully destroyed.'
+    redirect_to empleados_url, notice: 'Empleado fue eliminado satisfactoriamente.'
   end
 
   private

@@ -19,7 +19,7 @@ class EmpleadosTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @empleado.nombre
     click_on "Create Empleado"
 
-    assert_text "Empleado was successfully created"
+    assert_text "Empleado fue creado satisfactoriamente"
     click_on "Back"
   end
 
@@ -32,7 +32,7 @@ class EmpleadosTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @empleado.nombre
     click_on "Update Empleado"
 
-    assert_text "Empleado was successfully updated"
+    assert_text "Empleado fue guardado satisfactoriamente"
     click_on "Back"
   end
 
@@ -42,6 +42,6 @@ class EmpleadosTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Empleado was successfully destroyed"
+    assert_text "Empleado fue eliminado satisfactoriamente"
   end
 end

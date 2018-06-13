@@ -18,7 +18,7 @@ class CuentaSueldosTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @cuenta_sueldo.nombre
     click_on "Create Cuenta sueldo"
 
-    assert_text "Cuenta sueldo was successfully created"
+    assert_text "Cuenta sueldo fue creado satisfactoriamente"
     click_on "Back"
   end
 
@@ -30,7 +30,7 @@ class CuentaSueldosTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @cuenta_sueldo.nombre
     click_on "Update Cuenta sueldo"
 
-    assert_text "Cuenta sueldo was successfully updated"
+    assert_text "Cuenta sueldo fue guardado satisfactoriamente"
     click_on "Back"
   end
 
@@ -40,6 +40,6 @@ class CuentaSueldosTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Cuenta sueldo was successfully destroyed"
+    assert_text "Cuenta sueldo fue eliminado satisfactoriamente"
   end
 end

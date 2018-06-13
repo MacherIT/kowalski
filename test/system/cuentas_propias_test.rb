@@ -18,7 +18,7 @@ class CuentaPropiasTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @cuenta_propia.nombre
     click_on "Create Cuenta propia"
 
-    assert_text "Cuenta propia was successfully created"
+    assert_text "Cuenta propia fue creado satisfactoriamente"
     click_on "Back"
   end
 
@@ -30,7 +30,7 @@ class CuentaPropiasTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @cuenta_propia.nombre
     click_on "Update Cuenta propia"
 
-    assert_text "Cuenta propia was successfully updated"
+    assert_text "Cuenta propia fue guardado satisfactoriamente"
     click_on "Back"
   end
 
@@ -40,6 +40,6 @@ class CuentaPropiasTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Cuenta propia was successfully destroyed"
+    assert_text "Cuenta propia fue eliminado satisfactoriamente"
   end
 end

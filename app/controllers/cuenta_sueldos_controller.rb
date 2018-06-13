@@ -24,7 +24,7 @@ class CuentaSueldosController < ApplicationController
     @cuenta_sueldo = CuentaSueldo.new(cuenta_sueldo_params)
 
     if @cuenta_sueldo.save
-      redirect_to @cuenta_sueldo, notice: 'Cuenta sueldo was successfully created.'
+      redirect_to @cuenta_sueldo, notice: 'Cuenta sueldo fue creada satisfactoriamente.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class CuentaSueldosController < ApplicationController
   # PATCH/PUT /cuentas_sueldos/1
   def update
     if @cuenta_sueldo.update(cuenta_sueldo_params)
-      redirect_to @cuenta_sueldo, notice: 'Cuenta sueldo was successfully updated.'
+      redirect_to @cuenta_sueldo, notice: 'Cuenta sueldo fue guardada satisfactoriamente.'
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class CuentaSueldosController < ApplicationController
   # DELETE /cuentas_sueldos/1
   def destroy
     @cuenta_sueldo.destroy
-    redirect_to cuentas_sueldos_url, notice: 'Cuenta sueldo was successfully destroyed.'
+    redirect_to cuentas_sueldos_url, notice: 'Cuenta sueldo fue eliminada satisfactoriamente.'
   end
 
   private

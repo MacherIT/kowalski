@@ -17,7 +17,7 @@ class DuenosTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @dueno.nombre
     click_on "Create Dueno"
 
-    assert_text "Dueno was successfully created"
+    assert_text "Dueno fue creado satisfactoriamente"
     click_on "Back"
   end
 
@@ -28,7 +28,7 @@ class DuenosTest < ApplicationSystemTestCase
     fill_in "Nombre", with: @dueno.nombre
     click_on "Update Dueno"
 
-    assert_text "Dueno was successfully updated"
+    assert_text "Dueno fue guardado satisfactoriamente"
     click_on "Back"
   end
 
@@ -38,6 +38,6 @@ class DuenosTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Dueno was successfully destroyed"
+    assert_text "Dueno fue eliminado satisfactoriamente"
   end
 end

@@ -20,7 +20,7 @@ class <%= class_name.pluralize %>Test < ApplicationSystemTestCase
     <%- end -%>
     click_on "Create <%= human_name %>"
 
-    assert_text "<%= human_name %> was successfully created"
+    assert_text "<%= human_name %> fue creado satisfactoriamente"
     click_on "Back"
   end
 
@@ -33,7 +33,7 @@ class <%= class_name.pluralize %>Test < ApplicationSystemTestCase
     <%- end -%>
     click_on "Update <%= human_name %>"
 
-    assert_text "<%= human_name %> was successfully updated"
+    assert_text "<%= human_name %> fue guardado satisfactoriamente"
     click_on "Back"
   end
 
@@ -43,7 +43,7 @@ class <%= class_name.pluralize %>Test < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "<%= human_name %> was successfully destroyed"
+    assert_text "<%= human_name %> fue eliminado satisfactoriamente"
   end
 end
 <% end -%>
