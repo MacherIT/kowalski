@@ -1,0 +1,21 @@
+<% provide(:title) do %>
+  Cuenta Gasto #<%= @cuenta_gasto.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Concepto gasto</th>
+      <td><%= @cuenta_gasto.concepto_gasto %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Nombre</th>
+      <td><%= @cuenta_gasto.nombre %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_cuenta_gasto_path(@cuenta_gasto), class: "btn btn-primary" %>
+  <%= link_to "Atrás", cuentas_gastos_path, class: "btn btn-link" %>
+</p>

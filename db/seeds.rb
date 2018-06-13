@@ -27,3 +27,9 @@ logger.info "Creando cuentas sueldos"
 CUENTAS_SUELDOS.each do |cuenta|
   FactoryBot.create(:cuenta_sueldo, nombre: cuenta[:nombre], empleado: Empleado.where(apellido: cuenta[:apellido]).first)
 end
+
+logger.info "Creando cuentas y conceptos de gastos"
+CONCEPTOS_GASTOS.each do |concepto_gasto|
+  concepto = FactoryBot.create(:concepto_gasto, nombre: concepto_gasto)
+  FactoryBot.create(:cuenta_gasto, concepto_gasto: concepto, nombre: "Cuenta #{concepto.nombre}")
+end

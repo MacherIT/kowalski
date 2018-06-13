@@ -1,0 +1,36 @@
+<% provide(:title, "Lista de conceptos_gastos") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conceptos_gastos.each do |concepto_gasto| %>
+      <tr>
+        <td><%= concepto_gasto.nombre %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to concepto_gasto, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_concepto_gasto_path(concepto_gasto), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to concepto_gasto, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este concepto_gasto?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_concepto_gasto_path, class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nuevo Concepto gasto") %>
+<% end %>

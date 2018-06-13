@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :cuentas_gastos
+  resources :conceptos_gastos
   resources :cuentas_sueldos
   resources :empleados
   resources :cuentas_propias
