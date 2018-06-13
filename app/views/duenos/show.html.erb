@@ -1,0 +1,17 @@
+<% provide(:title) do %>
+  Dueno #<%= @dueno.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Nombre</th>
+      <td><%= @dueno.nombre %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_dueno_path(@dueno), class: "btn btn-primary" %>
+  <%= link_to "Atrás", duenos_path, class: "btn btn-link" %>
+</p>

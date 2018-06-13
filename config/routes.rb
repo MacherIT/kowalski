@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :cuentas_sueldos
+  resources :empleados
+  resources :cuentas_propias
+  resources :duenos
   devise_for :users
   mount Sidekiq::Web => "/sidekiq" # monitoring console
   root "home#index"

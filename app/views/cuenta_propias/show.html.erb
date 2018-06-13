@@ -1,0 +1,21 @@
+<% provide(:title) do %>
+  Cuenta Propia #<%= @cuenta_propia.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Dueno</th>
+      <td><%= @cuenta_propia.dueno %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Nombre</th>
+      <td><%= @cuenta_propia.nombre %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_cuenta_propia_path(@cuenta_propia), class: "btn btn-primary" %>
+  <%= link_to "Atrás", cuentas_propias_path, class: "btn btn-link" %>
+</p>

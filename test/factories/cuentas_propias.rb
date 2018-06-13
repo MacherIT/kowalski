@@ -17,6 +17,9 @@
 #  fk_rails_...  (dueno_id => duenos.id)
 #
 
-class CuentaPropia < ApplicationRecord
-  belongs_to :dueno
+FactoryBot.define do
+  factory :cuenta_propia do
+    nombre { CUENTAS_PROPIAS.sample[:nombre] }
+    dueno nil
+  end
 end

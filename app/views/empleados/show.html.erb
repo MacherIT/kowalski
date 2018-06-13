@@ -1,0 +1,25 @@
+<% provide(:title) do %>
+  Empleado #<%= @empleado.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Nombre</th>
+      <td><%= @empleado.nombre %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Apellido</th>
+      <td><%= @empleado.apellido %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Cuit</th>
+      <td><%= @empleado.cuit %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_empleado_path(@empleado), class: "btn btn-primary" %>
+  <%= link_to "Atrás", empleados_path, class: "btn btn-link" %>
+</p>

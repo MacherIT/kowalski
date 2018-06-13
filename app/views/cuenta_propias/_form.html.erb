@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@cuenta_propia) do |f| %>
+
+  <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+  <%= f.text_field :dueno_id %>
+  <%= f.text_field :nombre %>
+
+  <%= f.primary %>
+  <%= link_to "Atrás", cuentas_propias_path, class: "btn btn-link" %>
+
+<% end %>

@@ -130,6 +130,7 @@ ActiveSupport::Inflector.inflections do |inflect|
 
   ActiveSupport::Inflector.inflections do |infl|
     infl.irregular "cuenta_propia", "cuentas_propias"
+    infl.irregular "cuenta_sueldo", "cuentas_sueldos"
     infl.irregular "proveedor", "proveedores"
     infl.irregular "club", "clubes"
     infl.irregular "participacion", "participaciones"

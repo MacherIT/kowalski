@@ -1,0 +1,21 @@
+<% provide(:title) do %>
+  Cuenta Sueldo #<%= @cuenta_sueldo.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Empleado</th>
+      <td><%= @cuenta_sueldo.empleado %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Nombre</th>
+      <td><%= @cuenta_sueldo.nombre %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_cuenta_sueldo_path(@cuenta_sueldo), class: "btn btn-primary" %>
+  <%= link_to "Atrás", cuentas_sueldos_path, class: "btn btn-link" %>
+</p>

@@ -10,21 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_161502) do
+ActiveRecord::Schema.define(version: 2018_06_13_180256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cuentas_propias", force: :cascade do |t|
     t.bigint "dueno_id"
-    t.string "nombre", null: false
+    t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dueno_id"], name: "index_cuentas_propias_on_dueno_id"
   end
 
-  create_table "duenos", force: :cascade do |t|
+  create_table "cuentas_sueldos", force: :cascade do |t|
+    t.bigint "empleado_id"
     t.string "nombre", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empleado_id"], name: "index_cuentas_sueldos_on_empleado_id"
+  end
+
+  create_table "duenos", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "empleados", force: :cascade do |t|
+    t.string "nombre"
+    t.string "apellido"
+    t.string "cuit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,4 +63,5 @@ ActiveRecord::Schema.define(version: 2018_06_13_161502) do
   end
 
   add_foreign_key "cuentas_propias", "duenos"
+  add_foreign_key "cuentas_sueldos", "empleados"
 end
