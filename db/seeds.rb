@@ -6,12 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-logger.info "Creando dueños"
+Rails.logger = Logger.new(STDOUT)
+
+Rails.logger.info "Creando dueños"
 DUENOS.each do |dueno|
   FactoryBot.create(:dueno, nombre: dueno)
 end
 
-logger.info "Creando cuentas propias"
+Rails.logger.info "Creando cuentas propias"
 CUENTAS_PROPIAS.each do |cuenta|
   FactoryBot.create(:cuenta_propia, nombre: cuenta[:nombre], dueno: Dueno.where(nombre: cuenta[:dueno]).first)
 end
