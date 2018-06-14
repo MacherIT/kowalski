@@ -10,6 +10,6 @@
 
 FactoryBot.define do
   factory :dueno do
-    nombre { DUENO.sample }
+    nombre { DUENOS.sample }
   end
 end

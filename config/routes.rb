@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :movimientos
   resources :cuentas_gastos
   resources :conceptos_gastos
   resources :cuentas_sueldos

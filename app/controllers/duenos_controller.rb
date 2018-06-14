@@ -34,7 +34,7 @@ class DuenosController < ApplicationController
     @dueno = Dueno.new(dueno_params)
 
     if @dueno.save
-      redirect_to @dueno, notice: 'Dueno fue creado satisfactoriamente.'
+      redirect_to @dueno, notice: 'Dueño fue creado satisfactoriamente.'
     else
       render :new
     end
@@ -43,7 +43,7 @@ class DuenosController < ApplicationController
   # PATCH/PUT /duenos/1
   def update
     if @dueno.update(dueno_params)
-      redirect_to @dueno, notice: 'Dueno fue guardado satisfactoriamente.'
+      redirect_to @dueno, notice: 'Dueño fue guardado satisfactoriamente.'
     else
       render :edit
     end
@@ -52,7 +52,7 @@ class DuenosController < ApplicationController
   # DELETE /duenos/1
   def destroy
     @dueno.destroy
-    redirect_to duenos_url, notice: 'Dueno fue eliminado satisfactoriamente.'
+    redirect_to duenos_url, notice: 'Dueño fue eliminado satisfactoriamente.'
   end
 
   private

@@ -20,6 +20,6 @@
 FactoryBot.define do
   factory :cuenta_propia do
     nombre { CUENTAS_PROPIAS.sample[:nombre] }
-    dueno nil
+    dueno
   end
 end

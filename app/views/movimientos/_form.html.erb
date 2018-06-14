@@ -1,0 +1,15 @@
+<%= bootstrap_form_for(@movimiento) do |f| %>
+
+  <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+  <%= f.text_field :cuenta_debito_id %>
+  <%= f.text_field :cuenta_credito_id %>
+  <%= f.text_field :concepto %>
+  <%= f.date_select :fecha_supuesta %>
+  <%= f.date_select :fecha_efectiva %>
+  <%= f.check_box :hecha %>
+
+  <%= f.primary %>
+  <%= link_to "Atrás", movimientos_path, class: "btn btn-link" %>
+
+<% end %>

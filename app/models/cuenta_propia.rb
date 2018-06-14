@@ -19,4 +19,13 @@
 
 class CuentaPropia < ApplicationRecord
   belongs_to :dueno
+  has_many :debitos, class_name: "Movimiento",
+                     foreign_key: "cuenta_debito_id",
+                     dependent: :nullify,
+                     inverse_of: :cuenta_debito
+
+  has_many :creditos, class_name: "Movimiento",
+                      foreign_key: "cuenta_credito_id",
+                      dependent: :nullify,
+                      inverse_of: :cuenta_credito
 end

@@ -1,0 +1,46 @@
+<% provide(:title, "Lista de movimientos") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cuenta debito</th>
+      <th>Cuenta credito</th>
+      <th>Concepto</th>
+      <th>Fecha supuesta</th>
+      <th>Fecha efectiva</th>
+      <th>Hecha</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos.each do |movimiento| %>
+      <tr>
+        <td><%= movimiento.cuenta_debito %></td>
+        <td><%= movimiento.cuenta_credito %></td>
+        <td><%= movimiento.concepto %></td>
+        <td><%= movimiento.fecha_supuesta %></td>
+        <td><%= movimiento.fecha_efectiva %></td>
+        <td><%= movimiento.hecha %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to movimiento, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_movimiento_path(movimiento), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to movimiento, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este movimiento?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_movimiento_path, class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nuevo Movimiento") %>
+<% end %>

@@ -1,0 +1,37 @@
+<% provide(:title) do %>
+  Movimiento #<%= @movimiento.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Cuenta debito</th>
+      <td><%= @movimiento.cuenta_debito %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Cuenta credito</th>
+      <td><%= @movimiento.cuenta_credito %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Concepto</th>
+      <td><%= @movimiento.concepto %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Fecha supuesta</th>
+      <td><%= @movimiento.fecha_supuesta %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Fecha efectiva</th>
+      <td><%= @movimiento.fecha_efectiva %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Hecha</th>
+      <td><%= @movimiento.hecha %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_movimiento_path(@movimiento), class: "btn btn-primary" %>
+  <%= link_to "Atrás", movimientos_path, class: "btn btn-link" %>
+</p>

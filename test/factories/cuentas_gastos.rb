@@ -19,7 +19,7 @@
 
 FactoryBot.define do
   factory :cuenta_gasto do
-    nombre { CUENTAS_GASTOS.sample[:nombre] }
-    concepto_gasto nil
+    concepto_gasto
+    nombre { "Cuenta #{concepto_gasto.nombre}" }
   end
 end
