@@ -19,8 +19,9 @@
 
 class CuentaGasto < ApplicationRecord
   belongs_to :concepto_gasto
-  has_many :debitos, class_name: "Movimiento", foreign_key: "cuenta_debito_id",
-                     inverse_of: :cuenta_debito, dependent: :nullify
+  has_many :debitos,  class_name: "Movimiento",
+                      foreign_key: "cuenta_debito_id",
+                      inverse_of: :cuenta_debito, dependent: :nullify
   has_many :creditos, class_name: "Movimiento",
                       foreign_key: "cuenta_credito_id",
                       inverse_of: :cuenta_credito, dependent: :nullify

@@ -24,8 +24,10 @@
 #
 
 class Movimiento < ApplicationRecord
+  default_scope { order(fecha_supuesta: :desc) }
+
   belongs_to :cuenta_debito, polymorphic: true
   belongs_to :cuenta_credito, polymorphic: true
 
-  validates :monto, presence: true
+  validates :monto, :concepto, :fecha_supuesta, presence: true
 end

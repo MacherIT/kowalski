@@ -21,7 +21,7 @@ module Gema
 
     config.i18n.default_locale = :es
     config.time_zone = "Buenos Aires"
-    config.i18n.available_locales = [:es]
+    config.i18n.available_locales = %i[es en]
 
     # Heroku asset precompilation
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/

@@ -33,3 +33,8 @@ CONCEPTOS_GASTOS.each do |concepto_gasto|
   concepto = FactoryBot.create(:concepto_gasto, nombre: concepto_gasto)
   FactoryBot.create(:cuenta_gasto, concepto_gasto: concepto, nombre: "Cuenta #{concepto.nombre}")
 end
+
+logger.info "Creando gastos en efectivo"
+100.times do |_i|
+  FactoryBot.create(:mov_gasto)
+end

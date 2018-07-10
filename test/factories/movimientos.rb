@@ -21,11 +21,17 @@
 
 FactoryBot.define do
   factory :movimiento do
+    concepto { Faker::DumbAndDumber.quote }
+    fecha_supuesta { Time.zone.today + rand(-15..15).days }
+    fecha_efectiva { fecha_supuesta + rand(30).days }
+    hecha true
     cuenta_debito nil
     cuenta_credito nil
-    concepto "Gastos random"
-    fecha_supuesta "2018-06-13"
-    fecha_efectiva "2018-06-13"
-    hecha false
+    monto { rand(1000) }
+
+    factory :mov_gasto do
+      cuenta_debito { CuentaPropia.all.sample }
+      cuenta_credito { CuentaGasto.all.sample }
+    end
   end
 end

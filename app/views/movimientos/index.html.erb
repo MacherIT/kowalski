@@ -3,11 +3,12 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Fecha supuesta</th>
+      <th>Fecha efectiva</th>
       <th>Cuenta debito</th>
       <th>Cuenta credito</th>
       <th>Concepto</th>
-      <th>Fecha supuesta</th>
-      <th>Fecha efectiva</th>
+      <th>Monto</th>
       <th>Hecha</th>
       <th></th>
     </tr>
@@ -16,11 +17,12 @@
   <tbody>
     <% @movimientos.each do |movimiento| %>
       <tr>
-        <td><%= movimiento.cuenta_debito %></td>
-        <td><%= movimiento.cuenta_credito %></td>
-        <td><%= movimiento.concepto %></td>
         <td><%= movimiento.fecha_supuesta %></td>
         <td><%= movimiento.fecha_efectiva %></td>
+        <td><%= movimiento.cuenta_debito.nombre %></td>
+        <td><%= movimiento.cuenta_credito.nombre %></td>
+        <td><%= movimiento.concepto %></td>
+        <td><%= movimiento.monto %></td>
         <td><%= movimiento.hecha %></td>
         <td>
           <div class="btn-group">
@@ -38,6 +40,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @movimientos, remote: true %>
 
 <br>
 

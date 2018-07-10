@@ -26,7 +26,7 @@ class MovimientosController < ApplicationController
 
   # GET /movimientos
   def index
-    @movimientos = Movimiento.all
+    @movimientos = Movimiento.page(params[:page])
   end
 
   # GET /movimientos/1
@@ -47,7 +47,7 @@ class MovimientosController < ApplicationController
     @movimiento = Movimiento.new(movimiento_params)
 
     if @movimiento.save
-      redirect_to @movimiento, notice: 'Movimiento fue creado satisfactoriamente.'
+      redirect_to @movimiento, notice: "Movimiento fue creado satisfactoriamente."
     else
       render :new
     end
@@ -56,7 +56,7 @@ class MovimientosController < ApplicationController
   # PATCH/PUT /movimientos/1
   def update
     if @movimiento.update(movimiento_params)
-      redirect_to @movimiento, notice: 'Movimiento fue guardado satisfactoriamente.'
+      redirect_to @movimiento, notice: "Movimiento fue guardado satisfactoriamente."
     else
       render :edit
     end
@@ -65,7 +65,7 @@ class MovimientosController < ApplicationController
   # DELETE /movimientos/1
   def destroy
     @movimiento.destroy
-    redirect_to movimientos_url, notice: 'Movimiento fue eliminado satisfactoriamente.'
+    redirect_to movimientos_url, notice: "Movimiento fue eliminado satisfactoriamente."
   end
 
   private
@@ -77,6 +77,26 @@ class MovimientosController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def movimiento_params
-    params.require(:movimiento).permit(:cuenta_debito_id, :cuenta_credito_id, :concepto, :fecha_supuesta, :fecha_efectiva, :hecha)
+    params.require(:movimiento).permit(:cuenta_debito_id, :cuenta_credito_id, :cuenta_debito_type, :cuenta_credito_type, :concepto, :fecha_supuesta, :fecha_efectiva, :hecha)
   end
+
+  # Get type of Cuenta with which to interact
+  # def find_cuenta
+  #   params.each do |name, value|
+  #     return Regexp.last_match(1).classify.constantize.find(value) if name =~ /(.+)_id$/
+  #   end
+  #   nil
+  # end
+
+  # def find_cuenta_debito
+  #   params[:cuenta_debito_types][params[:cuenta_debito_id]]
+  #     .constantize
+  #     .find(params[:cuenta_debito_id])
+  # end
+  #
+  # def find_cuenta_credito
+  #   params[:cuenta_credito_types][params[:cuenta_credito_id]]
+  #     .constantize
+  #     .find(params[:cuenta_credito_id])
+  # end
 end

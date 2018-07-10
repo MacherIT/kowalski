@@ -2,8 +2,34 @@
 
   <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
 
-  <%= f.text_field :cuenta_debito_id %>
-  <%= f.text_field :cuenta_credito_id %>
+  <!-- TODO: Ordenar esto con FormBuilder -->
+  <%= f.select :cuenta_debito_type,
+        options_for_select({
+          "Cuenta propia" => "CuentaPropia",
+          "Cuenta gasto" => "CuentaGasto",
+          "Cuenta sueldo" => "CuentaSueldo"
+          },
+          "Cuenta propia"),
+        label: "Tipo de cuenta de débito"
+        %>
+
+  <!-- Genera un array con los parámetros para crear options con todas las cuentas -->
+  <% cuentasPropias = CuentaPropia.all.map do |c|
+      [c.nombre, c.id, class: "option_cuenta cuenta_propia"]
+    end
+    cuentasGastos = CuentaGasto.all.map do |c|
+      [c.nombre, c.id, class: "option_cuenta cuenta_gasto", hidden: true]
+    end
+    cuentasSueldos = CuentaSueldo.all.map do |c|
+      [c.nombre, c.id, class: "option_cuenta cuenta_sueldo", hidden: true]
+    end
+    cuentas = cuentasPropias + cuentasGastos + cuentasSueldos
+  %>
+  <%= f.select :cuenta_debito_id, options_for_select(cuentas), include_blank: true %>
+
+
+  <!-- FIXME: Repetir lo de arriba pero para las de credito -->
+  <%= f.select :cuenta_credito_id, CuentaPropia.all.collect { |c| [c.nombre, c.id] }, label: "Tipo de cuenta de crédito" %>
   <%= f.text_field :concepto %>
   <%= f.date_select :fecha_supuesta %>
   <%= f.date_select :fecha_efectiva %>
