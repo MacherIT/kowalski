@@ -28,4 +28,10 @@ class CuentaSueldo < ApplicationRecord
                       foreign_key: "cuenta_credito_id",
                       dependent: :nullify,
                       inverse_of: :cuenta_credito
+
+  def self.options_for_select(tipo)
+    all.map do |c|
+      [c.nombre, c.id, class: "option_cuenta_#{tipo} #{to_s.underscore}"]
+    end
+  end
 end
