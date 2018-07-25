@@ -29,9 +29,13 @@ class CuentaSueldo < ApplicationRecord
                       dependent: :nullify,
                       inverse_of: :cuenta_credito
 
-  def self.options_for_select(tipo)
+  def self.options_for_select(tipo, klass=nil)
     all.map do |c|
-      [c.nombre, c.id, class: "option_cuenta_#{tipo} #{to_s.underscore}"]
+      [
+        c.nombre,
+        c.id,
+        class: "option_cuenta_#{tipo} #{to_s.underscore} #{klass}"
+      ]
     end
   end
 end

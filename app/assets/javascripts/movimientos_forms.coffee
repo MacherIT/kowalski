@@ -6,12 +6,12 @@ $(document).on 'turbolinks:load', ->
     $('#movimiento_cuenta_debito_id')[0].value = ''
 
     # Esconde todas las opciones
-    $('.option_cuenta_debito').attr('hidden', true)
+    $('.option_cuenta_debito').addClass('hidden')
 
     # Muestra solo las del tipo correspondiente
     tipo = event.target.value.toSnakeCase();
     options = $('.' + tipo)
-    options.attr('hidden', false)
+    options.removeClass('hidden')
 
     # Cambios en select de tipo de cuenta crédito
   $('#movimiento_cuenta_credito_type').on 'change', (event) ->
@@ -20,12 +20,12 @@ $(document).on 'turbolinks:load', ->
     $('#movimiento_cuenta_credito_id')[0].value = ''
 
     # Esconde todas las opciones
-    $('.option_cuenta_credito').attr('hidden', true)
+    $('.option_cuenta_credito').addClass('hidden')
 
     # Muestra solo las del tipo correspondiente
     tipo = event.target.value.toSnakeCase();
     options = $('.' + tipo)
-    options.attr('hidden', false)
+    options.removeClass('hidden')
 
 
 # camelize = (str) ->

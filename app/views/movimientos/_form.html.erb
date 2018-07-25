@@ -11,6 +11,8 @@
 
 <%= f.select :cuenta_credito_id, options_for_select(cuentas_options_for_select('credito')), include_blank: true, label: "Cuenta de crédito" %>
 
+<%= f.number_field :monto, label: "Monto" %>
+
 <%= f.text_field :concepto %>
 <%= f.date_select :fecha_supuesta %>
 <%= f.date_select :fecha_efectiva %>
