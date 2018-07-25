@@ -8,6 +8,9 @@
 
 logger = Logger.new(STDOUT)
 
+logger.info "Creando usuarios"
+FactoryBot.create(:user, email: "bruno.calmels@macherit.com", password: "macherito")
+
 logger.info "Creando dueños"
 DUENOS.each do |dueno|
   FactoryBot.create(:dueno, nombre: dueno)
