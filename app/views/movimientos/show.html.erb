@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <th class="col-sm-2">Monto</th>
-      <td>$ <%= @movimiento.monto %></td>
+      <td><%= number_to_currency(@movimiento.monto) %></td>
     </tr>
     <tr>
       <th class="col-sm-2">Fecha supuesta</th>

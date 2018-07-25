@@ -77,7 +77,7 @@ class MovimientosController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def movimiento_params
-    params.require(:movimiento).permit(:cuenta_debito_id, :cuenta_credito_id, :cuenta_debito_type, :cuenta_credito_type, :concepto, :fecha_supuesta, :fecha_efectiva, :hecha)
+    params.require(:movimiento).permit(:cuenta_debito_id, :cuenta_credito_id, :cuenta_debito_type, :cuenta_credito_type, :concepto, :fecha_supuesta, :fecha_efectiva, :hecha, :monto)
   end
 
   # Get type of Cuenta with which to interact
