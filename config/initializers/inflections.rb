@@ -134,6 +134,7 @@ ActiveSupport::Inflector.inflections do |inflect|
     infl.irregular "concepto_gasto", "conceptos_gastos"
     infl.irregular "cuenta_gasto", "cuentas_gastos"
     infl.irregular "cuenta_proveedor", "cuentas_proveedores"
+    infl.irregular "cuenta_cliente", "cuentas_clientes"
     infl.irregular "permitió", "permitieron"
     infl.irregular "user", "users"
   end

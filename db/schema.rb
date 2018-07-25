@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_191107) do
+ActiveRecord::Schema.define(version: 2018_07_25_201817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2018_07_25_191107) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cuentas_clientes", force: :cascade do |t|
+    t.bigint "empresa_id"
+    t.string "nombre", default: "f"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_cuentas_clientes_on_empresa_id"
+    t.index ["nombre"], name: "index_cuentas_clientes_on_nombre"
   end
 
   create_table "cuentas_gastos", force: :cascade do |t|
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 2018_07_25_191107) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cuentas_clientes", "empresas"
   add_foreign_key "cuentas_gastos", "conceptos_gastos"
   add_foreign_key "cuentas_propias", "duenos"
   add_foreign_key "cuentas_proveedores", "empresas"

@@ -9,7 +9,7 @@
 logger = Logger.new(STDOUT)
 
 logger.info "Usuarios"
-FactoryBot.create(:user, email: "bruno.calmels@macherit.com", password: "macherito")
+User.create email: "bruno.calmels@macherit.com", password: "macherito"
 
 logger.info "Dueños"
 DUENOS.each do |dueno|
@@ -37,13 +37,19 @@ CONCEPTOS_GASTOS.each do |concepto_gasto|
   FactoryBot.create(:cuenta_gasto, concepto_gasto: concepto, nombre: "Cuenta #{concepto.nombre}")
 end
 
-logger.info "Gastos en efectivo"
-100.times do |_i|
-  FactoryBot.create(:mov_gasto)
-end
-
 logger.info "Empresas proveedoras"
 PROVEEDORES.each do |prov|
   proveedor = FactoryBot.create(:empresa, nombre: prov)
   FactoryBot.create(:cuenta_proveedor, empresa: proveedor, nombre: "Cuenta de " + proveedor.nombre)
+end
+
+logger.info "Clientes"
+CLIENTES.each do |cli|
+  cliente = FactoryBot.create(:empresa, nombre: cli)
+  FactoryBot.create(:cuenta_cliente, empresa: cliente, nombre: "Cuenta de " + cliente.nombre)
+end
+
+logger.info "Gastos en efectivo"
+10.times do |_i|
+  FactoryBot.create(:mov_gasto)
 end
