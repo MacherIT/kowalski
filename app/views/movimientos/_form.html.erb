@@ -3,11 +3,11 @@
 <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
 
 <!-- TODO: Ordenar esto con FormBuilder -->
-<%= f.select :cuenta_debito_type, options_for_select({ "Cuenta propia" => "CuentaPropia", "Cuenta gasto" => "CuentaGasto", "Cuenta sueldo" => "CuentaSueldo" }, "Cuenta propia"), label: "Tipo de cuenta de débito" %>
+<%= f.select :cuenta_debito_type, options_for_select({ "Propia" => "CuentaPropia", "Gasto" => "CuentaGasto", "Sueldo" => "CuentaSueldo", "Proveedor" => "CuentaProveedor" }, "Cuenta propia"), label: "Tipo de cuenta de débito" %>
 
 <%= f.select :cuenta_debito_id, options_for_select(cuentas_options_for_select('debito')), include_blank: true, label: "Cuenta de débito" %>
 
-<%= f.select :cuenta_credito_type, options_for_select({ "Cuenta propia" => "CuentaPropia", "Cuenta gasto" => "CuentaGasto", "Cuenta sueldo" => "CuentaSueldo" }, "Cuenta propia"), label: "Tipo de cuenta de crédito" %>
+<%= f.select :cuenta_credito_type, options_for_select({ "Propia" => "CuentaPropia", "Gasto" => "CuentaGasto", "Sueldo" => "CuentaSueldo", "Proveedor" => "CuentaProveedor" }, "Cuenta propia"), label: "Tipo de cuenta de crédito" %>
 
 <%= f.select :cuenta_credito_id, options_for_select(cuentas_options_for_select('credito')), include_blank: true, label: "Cuenta de crédito" %>
 
@@ -16,7 +16,7 @@
 <%= f.text_field :concepto %>
 <%= f.date_select :fecha_supuesta %>
 <%= f.date_select :fecha_efectiva %>
-<%= f.check_box :hecha %>
+<%= f.check_box :hecha, checked: true%>
 
 <%= f.primary %>
 <%= link_to "Atrás", movimientos_path, class: "btn btn-link" %>

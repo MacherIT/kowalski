@@ -6,7 +6,8 @@ module ApplicationHelper
     cuentas_propias = CuentaPropia.options_for_select(tipo)
     cuentas_gastos = CuentaGasto.options_for_select(tipo, "hidden")
     cuentas_sueldos = CuentaSueldo.options_for_select(tipo, "hidden")
+    cuentas_proveedores = CuentaProveedor.options_for_select(tipo, "hidden")
 
-    cuentas_propias + cuentas_gastos + cuentas_sueldos
+    cuentas_propias + cuentas_gastos + cuentas_sueldos + cuentas_proveedores
   end
 end

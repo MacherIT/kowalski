@@ -28,6 +28,12 @@ es:
               blank: Se requiere el apellido del invitado.
             nombre:
               blank: Se requiere el nombre del invitado.
+        movimiento:
+          attributes:
+            cuenta_credito:
+              required: Se requiere cuenta que se acredita.
+            cuenta_debito:
+              required: Se requiere cuenta que se debita.
   date:
     abbr_day_names:
     - dom

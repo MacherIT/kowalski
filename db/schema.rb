@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_200826) do
+ActiveRecord::Schema.define(version: 2018_07_25_191107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2018_06_13_200826) do
     t.index ["dueno_id"], name: "index_cuentas_propias_on_dueno_id"
   end
 
+  create_table "cuentas_proveedores", force: :cascade do |t|
+    t.bigint "empresa_id"
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_cuentas_proveedores_on_empresa_id"
+    t.index ["nombre"], name: "index_cuentas_proveedores_on_nombre"
+  end
+
   create_table "cuentas_sueldos", force: :cascade do |t|
     t.bigint "empleado_id"
     t.string "nombre", null: false
@@ -57,6 +66,19 @@ ActiveRecord::Schema.define(version: 2018_06_13_200826) do
     t.string "cuit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "empresas", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.integer "cuit_0", default: 0
+    t.bigint "cuit_1", default: 0
+    t.integer "cuit_2", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cuit_0"], name: "index_empresas_on_cuit_0"
+    t.index ["cuit_1"], name: "index_empresas_on_cuit_1"
+    t.index ["cuit_2"], name: "index_empresas_on_cuit_2"
+    t.index ["nombre"], name: "index_empresas_on_nombre"
   end
 
   create_table "movimientos", force: :cascade do |t|
@@ -94,5 +116,6 @@ ActiveRecord::Schema.define(version: 2018_06_13_200826) do
 
   add_foreign_key "cuentas_gastos", "conceptos_gastos"
   add_foreign_key "cuentas_propias", "duenos"
+  add_foreign_key "cuentas_proveedores", "empresas"
   add_foreign_key "cuentas_sueldos", "empleados"
 end

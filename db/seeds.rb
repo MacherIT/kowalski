@@ -8,36 +8,42 @@
 
 logger = Logger.new(STDOUT)
 
-logger.info "Creando usuarios"
+logger.info "Usuarios"
 FactoryBot.create(:user, email: "bruno.calmels@macherit.com", password: "macherito")
 
-logger.info "Creando dueños"
+logger.info "Dueños"
 DUENOS.each do |dueno|
   FactoryBot.create(:dueno, nombre: dueno)
 end
 
-logger.info "Creando cuentas propias"
+logger.info "Cuentas propias"
 CUENTAS_PROPIAS.each do |cuenta|
   FactoryBot.create(:cuenta_propia, nombre: cuenta[:nombre], dueno: Dueno.where(nombre: cuenta[:dueno]).first)
 end
 
-logger.info "Creando empleados"
+logger.info "Empleados"
 EMPLEADOS.each do |empleado|
   FactoryBot.create(:empleado, nombre: empleado[:nombre], apellido: empleado[:apellido], cuit: empleado[:cuit])
 end
 
-logger.info "Creando cuentas sueldos"
+logger.info "Cuentas sueldos"
 CUENTAS_SUELDOS.each do |cuenta|
   FactoryBot.create(:cuenta_sueldo, nombre: cuenta[:nombre], empleado: Empleado.where(apellido: cuenta[:apellido]).first)
 end
 
-logger.info "Creando cuentas y conceptos de gastos"
+logger.info "Cuentas y conceptos de gastos"
 CONCEPTOS_GASTOS.each do |concepto_gasto|
   concepto = FactoryBot.create(:concepto_gasto, nombre: concepto_gasto)
   FactoryBot.create(:cuenta_gasto, concepto_gasto: concepto, nombre: "Cuenta #{concepto.nombre}")
 end
 
-logger.info "Creando gastos en efectivo"
+logger.info "Gastos en efectivo"
 100.times do |_i|
   FactoryBot.create(:mov_gasto)
+end
+
+logger.info "Empresas proveedoras"
+PROVEEDORES.each do |prov|
+  proveedor = FactoryBot.create(:empresa, nombre: prov)
+  FactoryBot.create(:cuenta_proveedor, empresa: proveedor, nombre: "Cuenta de " + proveedor.nombre)
 end

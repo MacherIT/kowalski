@@ -17,11 +17,12 @@
 #
 # Indexes
 #
-#  index_movimientos_on_cuenta_credito_type_and_cuenta_credito_id
-#    (cuenta_credito_type,cuenta_credito_id)
-#  index_movimientos_on_cuenta_debito_type_and_cuenta_debito_id
-#    (cuenta_debito_type,cuenta_debito_id)
+# rubocop:disable LineLength
 #
+#  index_movimientos_on_cuenta_credito_type_and_cuenta_credito_id  (cuenta_credito_type,cuenta_credito_id)
+#  index_movimientos_on_cuenta_debito_type_and_cuenta_debito_id    (cuenta_debito_type,cuenta_debito_id)
+#
+# rubocop:enable LineLength
 
 class Movimiento < ApplicationRecord
   default_scope { order(fecha_supuesta: :desc) }
