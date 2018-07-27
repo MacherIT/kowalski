@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_201817) do
+ActiveRecord::Schema.define(version: 2018_07_27_124338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adquisiciones", force: :cascade do |t|
+    t.decimal "precio", default: "0.0", null: false
+    t.string "comentarios"
+    t.integer "tipo_pago", default: 0, null: false
+    t.date "inicio"
+    t.date "fin"
+    t.bigint "empresa_id", null: false
+    t.bigint "producto_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_adquisiciones_on_empresa_id"
+    t.index ["producto_id"], name: "index_adquisiciones_on_producto_id"
+  end
 
   create_table "conceptos_gastos", force: :cascade do |t|
     t.string "nombre"
@@ -106,6 +120,15 @@ ActiveRecord::Schema.define(version: 2018_07_25_201817) do
     t.index ["cuenta_debito_type", "cuenta_debito_id"], name: "index_movimientos_on_cuenta_debito_type_and_cuenta_debito_id"
   end
 
+  create_table "productos", force: :cascade do |t|
+    t.string "nombre", default: "", null: false
+    t.decimal "precio_default"
+    t.integer "tipo_pago_default", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nombre"], name: "index_productos_on_nombre"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -123,6 +146,8 @@ ActiveRecord::Schema.define(version: 2018_07_25_201817) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "adquisiciones", "empresas"
+  add_foreign_key "adquisiciones", "productos"
   add_foreign_key "cuentas_clientes", "empresas"
   add_foreign_key "cuentas_gastos", "conceptos_gastos"
   add_foreign_key "cuentas_propias", "duenos"

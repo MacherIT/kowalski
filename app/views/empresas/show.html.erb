@@ -1,0 +1,29 @@
+<% provide(:title) do %>
+  Empresa #<%= @empresa.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Nombre</th>
+      <td><%= @empresa.nombre %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Cuit 0</th>
+      <td><%= @empresa.cuit_0 %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Cuit 1</th>
+      <td><%= @empresa.cuit_1 %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Cuit 2</th>
+      <td><%= @empresa.cuit_2 %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_empresa_path(@empresa), class: "btn btn-primary" %>
+  <%= link_to "Atrás", empresas_path, class: "btn btn-link" %>
+</p>

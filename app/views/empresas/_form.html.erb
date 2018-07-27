@@ -1,0 +1,13 @@
+<%= bootstrap_form_for(@empresa) do |f| %>
+
+  <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+  <%= f.text_field :nombre %>
+  <%= f.number_field :cuit_0 %>
+  <%= f.text_field :cuit_1 %>
+  <%= f.number_field :cuit_2 %>
+
+  <%= f.primary %>
+  <%= link_to "Atrás", empresas_path, class: "btn btn-link" %>
+
+<% end %>

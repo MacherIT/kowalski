@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   authenticated :user do
+    resources :empresas do
+      resources :adquisiciones
+    end
+    resources :adquisiciones
     resources :cuentas_gastos
     resources :conceptos_gastos
     resources :cuentas_sueldos

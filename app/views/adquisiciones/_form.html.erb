@@ -1,0 +1,17 @@
+<%= bootstrap_form_for(@adquisicion) do |f| %>
+
+  <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+  <%= f.hidden_field :empresa_id, value: @empresa.id %>
+  <%= f.select :producto_id, Producto.all.collect { |prod| [prod.nombre, prod.id, { 'data-precio' => prod.precio_default }] } %>
+  <%= f.text_field :precio, value: Producto.first.precio_default %>
+  <%= f.text_field :comentarios %>
+  <%= f.select :tipo_pago, tipos_pago_for_form %>
+  <%= f.date_select :inicio %>
+  <!-- <%= f.date_select :fin %> -->
+  <!-- <%= f.text_field :empresa_id %> -->
+
+  <%= f.primary %>
+  <%= link_to "Atrás", adquisiciones_path, class: "btn btn-link" %>
+
+<% end %>

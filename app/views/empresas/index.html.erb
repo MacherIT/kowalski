@@ -1,0 +1,42 @@
+<% provide(:title, "Lista de empresas") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>CUIT</th>
+      <th>Adquisiciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @empresas.each do |empresa| %>
+      <tr>
+        <td><%= empresa.nombre %></td>
+        <td><%= empresa.cuit %></td>
+        <td><%= link_to "#{empresa.adquisiciones.count} activas", empresa_adquisiciones_path(empresa)%></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to empresa, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_empresa_path(empresa), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to empresa, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar esta empresa?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+            <%= link_to new_empresa_adquisicion_path(empresa), class: "btn btn-xs btn-success" do %>
+              <%= fa_icon("plus", text: "Nueva adquisición") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_empresa_path, class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nueva Empresa") %>
+<% end %>

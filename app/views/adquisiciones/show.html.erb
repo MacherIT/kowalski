@@ -1,0 +1,41 @@
+<% provide(:title) do %>
+  Adquisicion #<%= @adquisicion.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <tr>
+        <th class="col-sm-2">Empresa</th>
+        <td><%= @adquisicion.empresa.nombre %></td>
+      </tr>
+      <tr>
+        <th class="col-sm-2">Producto</th>
+        <td><%= @adquisicion.producto.nombre %></td>
+      </tr>
+    </tbody>
+      <th class="col-sm-2">Precio</th>
+      <td><%= @adquisicion.precio %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Comentarios</th>
+      <td><%= @adquisicion.comentarios %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Tipo pago</th>
+      <td><%= @adquisicion.tipo_pago_cast %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Inicio</th>
+      <td><%= @adquisicion.inicio %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Fin</th>
+      <td><%= @adquisicion.fin %></td>
+    </tr>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_adquisicion_path(@adquisicion), class: "btn btn-primary" %>
+  <%= link_to "Atrás", adquisiciones_path, class: "btn btn-link" %>
+</p>

@@ -13,6 +13,7 @@
           = navbar_link_to("Inicio", root_path, active_when: { controller: "home" })
           = navbar_link_to("Nuevo movimiento", new_movimiento_path)
           = navbar_link_to("Empleados", empleados_path)
+          = navbar_link_to("Empresas", empresas_path)
         %ul.nav.navbar-nav.navbar-right
           %li= link_to "Salir", destroy_user_session_url, { 'data-method': :delete }
 

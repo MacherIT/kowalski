@@ -23,7 +23,7 @@ end
 
 logger.info "Empleados"
 EMPLEADOS.each do |empleado|
-  FactoryBot.create(:empleado, nombre: empleado[:nombre], apellido: empleado[:apellido], cuit: empleado[:cuit])
+  FactoryBot.create(:empleado, empleado)
 end
 
 logger.info "Cuentas sueldos"
@@ -52,4 +52,9 @@ end
 logger.info "Gastos en efectivo"
 10.times do |_i|
   FactoryBot.create(:mov_gasto)
+end
+
+logger.info "Productos"
+PRODUCTOS.each do |prod|
+  FactoryBot.create(:producto, prod)
 end

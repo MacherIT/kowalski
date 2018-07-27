@@ -1,0 +1,48 @@
+<% provide(:title, "Lista de adquisiciones de #{@empresa.nombre}") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Empresa</th>
+      <th>Producto</th>
+      <th>Precio</th>
+      <th>Comentarios</th>
+      <th>Tipo pago</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adquisiciones.each do |adquisicion| %>
+      <tr>
+        <td><%= adquisicion.empresa.nombre %></td>
+        <td><%= adquisicion.producto.nombre %></td>
+        <td><%= adquisicion.precio %></td>
+        <td><%= adquisicion.comentarios %></td>
+        <td><%= adquisicion.tipo_pago_cast %></td>
+        <td><%= adquisicion.inicio %></td>
+        <td><%= adquisicion.fin %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to adquisicion, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_adquisicion_path(adquisicion), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to adquisicion, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este adquisicion?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_empresa_adquisicion_path(@empresa), class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nueva Adquisición") %>
+<% end %>

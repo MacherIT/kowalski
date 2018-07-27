@@ -19,6 +19,8 @@
 #
 
 class Empresa < ApplicationRecord
+  has_many :adquisiciones, dependent: :destroy
+
   validate :cuit_valido_0
   validate :cuit_valido_1
   validate :cuit_valido_2
