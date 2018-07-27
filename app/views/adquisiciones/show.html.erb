@@ -35,6 +35,13 @@
     </tr>
 </table>
 
+<h3>Cuotas</h3>
+<% if @adquisicion.cuotas.any? %>
+  <%= render 'cuotas/index', '@cuotas': @adquisicion.cuotas %>
+<% else %>
+  <p>No hay cuotas planeadas</p>
+<% end %>
+
 <p>
   <%= link_to "Editar", edit_adquisicion_path(@adquisicion), class: "btn btn-primary" %>
   <%= link_to "Atrás", adquisiciones_path, class: "btn btn-link" %>

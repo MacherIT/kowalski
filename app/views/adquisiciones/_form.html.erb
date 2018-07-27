@@ -2,16 +2,47 @@
 
   <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
 
-  <%= f.hidden_field :empresa_id, value: @empresa.id %>
+  <% unless @adquisicion.persisted? %>
+    <%= f.hidden_field :empresa_id, value: @empresa.id %>
+  <% else %>
+    <h4><%= @adquisicion.empresa.nombre %></h4>
+  <% end %>
   <%= f.select :producto_id, Producto.all.collect { |prod| [prod.nombre, prod.id, { 'data-precio' => prod.precio_default }] } %>
   <%= f.text_field :precio, value: Producto.first.precio_default %>
   <%= f.text_field :comentarios %>
-  <%= f.select :tipo_pago, tipos_pago_for_form %>
-  <%= f.date_select :inicio %>
+  <%= f.date_field :inicio, label: "Inicio del contrato" %>
   <!-- <%= f.date_select :fin %> -->
-  <!-- <%= f.text_field :empresa_id %> -->
+  <%= f.select :tipo_pago, tipos_pago_for_form %>
+
+  <h3>Cuotas</h3>
+  <div class="field cuotas_pago" id="cuotas_pago_unico">
+    <%= f.fields_for :cuotas do |cuotas_form| %>
+      <%= render 'cuotas_fields', f: cuotas_form %>
+    <% end %>
+    <p style="font-style: italic;">
+      Para cambiar la cantidad de cuotas, ingresar la cantidad deseada, guardar, y volver para editar los datos de cada una.
+    </p>
+    <div class="form-group">
+      <%= label :cant_cuotas, "Cantidad de cuotas" %>
+      <%= number_field_tag :cant_cuotas, nil, value: @adquisicion.cuotas.count, in: @adquisicion.cuotas.count..24 %>
+    </div>
+    <!-- <%= link_to_add_association 'Agregar cuota', f, :cuotas %> -->
+  </div>
+
+  <div class="field cuotas_pago" id="cuotas_pago_recurrente">
+    <p>La cuota de cada mes será creada automáticamente para un día específico</p>
+    <div class="form-group">
+      <%= label :cant_meses, "Cantidad de meses" %>
+      <%= number_field_tag :cant_meses, nil, value: @adquisicion.cuotas.count || 6, in: 3..12 %>
+    </div>
+    <div class="form-group">
+      <%= label :dia_del_mes, "Día de cobro" %>
+      <%= number_field_tag :dia_del_mes, nil, value: 1, in: 1..30 %>
+    </div>
+  </div>
+
 
   <%= f.primary %>
-  <%= link_to "Atrás", adquisiciones_path, class: "btn btn-link" %>
+  <%= link_to "Atrás", empresa_adquisiciones_path(@adquisicion.empresa), class: "btn btn-link" %>
 
 <% end %>

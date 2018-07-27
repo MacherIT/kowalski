@@ -27,8 +27,22 @@
 class Adquisicion < ApplicationRecord
   belongs_to :empresa
   belongs_to :producto
+  has_many :cuotas, dependent: :nullify
+  accepts_nested_attributes_for(
+    :cuotas,
+    reject_if: proc { |attributes| attributes[:monto].blank? },
+    allow_destroy: true
+  )
+  before_destroy :check_cuotas
 
   def tipo_pago_cast
     TIPOS_PAGO.select { |_k, v| v == tipo_pago }.keys.first.to_s.capitalize
+  end
+
+  private
+
+  # No se podra detruir si tiene cuotas asociadas
+  def check_cuotas
+    throw :abort unless cuotas.none?
   end
 end

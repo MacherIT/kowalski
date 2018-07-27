@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cuotas
   devise_for :users
   authenticated :user do
     resources :empresas do

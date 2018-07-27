@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_124338) do
+ActiveRecord::Schema.define(version: 2018_07_27_153634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 2018_07_27_124338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["empleado_id"], name: "index_cuentas_sueldos_on_empleado_id"
+  end
+
+  create_table "cuotas", force: :cascade do |t|
+    t.bigint "adquisicion_id"
+    t.decimal "monto", default: "0.0", null: false
+    t.date "fecha_vencimiento"
+    t.string "concepto", default: "Cuota única", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adquisicion_id"], name: "index_cuotas_on_adquisicion_id"
   end
 
   create_table "duenos", force: :cascade do |t|
@@ -153,4 +163,5 @@ ActiveRecord::Schema.define(version: 2018_07_27_124338) do
   add_foreign_key "cuentas_propias", "duenos"
   add_foreign_key "cuentas_proveedores", "empresas"
   add_foreign_key "cuentas_sueldos", "empleados"
+  add_foreign_key "cuotas", "adquisiciones"
 end

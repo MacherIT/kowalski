@@ -1,0 +1,33 @@
+<% provide(:title) do %>
+  Cuota #<%= @cuota.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Empresa</th>
+      <td><%= link_to @cuota.adquisicion.empresa.nombre, empresa_adquisiciones_path(@cuota.adquisicion.empresa) %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Adquisicion</th>
+      <td><%= @cuota.adquisicion.producto.nombre %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Concepto</th>
+      <td><%= @cuota.concepto %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Monto</th>
+      <td><%= @cuota.monto %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Fecha vencimiento</th>
+      <td><%= @cuota.fecha_vencimiento %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_cuota_path(@cuota), class: "btn btn-primary" %>
+  <%= link_to "Atrás", cuotas_path, class: "btn btn-link" %>
+</p>

@@ -25,6 +25,7 @@ gem "turbolinks", "~> 5"
 gem "haml"
 gem "devise"
 gem 'kaminari'
+gem "cocoon"
 
 group :test, :development do
   gem "factory_bot_rails"

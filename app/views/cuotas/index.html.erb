@@ -1,0 +1,9 @@
+<% provide(:title, "Lista de cuotas") %>
+
+<%= render 'index', '@cuotas': @cuotas  %>
+
+<br>
+
+<%= link_to new_cuota_path, class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nuevo Cuota") %>
+<% end %>

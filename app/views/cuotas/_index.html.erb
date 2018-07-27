@@ -1,0 +1,36 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Empresa</th>
+      <th>Adquisición</th>
+      <th>Concepto</th>
+      <th>Monto</th>
+      <th>Fecha vencimiento</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cuotas.each do |cuota| %>
+      <tr>
+        <td><%= cuota.adquisicion.empresa.nombre %></td>
+        <td><%= cuota.adquisicion.producto.nombre %></td>
+        <td><%= cuota.concepto %></td>
+        <td><%= cuota.monto %></td>
+        <td><%= cuota.fecha_vencimiento %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to cuota, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_cuota_path(cuota), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to cuota, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este cuota?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

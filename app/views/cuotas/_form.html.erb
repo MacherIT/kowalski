@@ -1,0 +1,13 @@
+<%= bootstrap_form_for(@cuota) do |f| %>
+
+  <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+  <%= f.hidden_field :adquisicion_id %>
+  <%= f.text_field :concepto %>
+  <%= f.text_field :monto %>
+  <%= f.date_select :fecha_vencimiento %>
+
+  <%= f.primary %>
+  <%= link_to "Atrás", cuotas_path, class: "btn btn-link" %>
+
+<% end %>
