@@ -4,8 +4,11 @@
       <th>Empresa</th>
       <th>Adquisición</th>
       <th>Concepto</th>
-      <th>Monto</th>
       <th>Fecha vencimiento</th>
+      <th>Pagos</th>
+      <th>Monto</th>
+      <th>Total pagado</th>
+      <th>Pagada completamente</th>
       <th></th>
     </tr>
   </thead>
@@ -16,8 +19,11 @@
         <td><%= cuota.adquisicion.empresa.nombre %></td>
         <td><%= cuota.adquisicion.producto.nombre %></td>
         <td><%= cuota.concepto %></td>
-        <td><%= cuota.monto %></td>
         <td><%= cuota.fecha_vencimiento %></td>
+        <td><%= link_to "#{cuota.movimientos.count} pagos", cuota_movimientos_path(cuota) %></td>
+        <td><%= number_to_currency(cuota.monto) %></td>
+        <td><%= number_to_currency(cuota.total_abonado) %></td>
+        <td><%= cuota.pagada?? "Sí" : "No" %></td>
         <td>
           <div class="btn-group">
             <%= link_to cuota, class: "btn btn-xs btn-default" do %>
@@ -27,7 +33,10 @@
               <%= fa_icon("pencil", text: "Editar") %>
             <% end %>
             <%= link_to cuota, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este cuota?" } do %>
-              <%= fa_icon("trash-o", text: "Eliminar") %>
+              <%= fa_icon("plus", text: "Eliminar") %>
+            <% end %>
+            <%= link_to new_cuota_movimiento_path(cuota), class: "btn btn-xs btn-success", data: { cuota_id: cuota.id } do %>
+              <%= fa_icon("plus", text: "Pago") %>
             <% end %>
           </div>
       </tr>

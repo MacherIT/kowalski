@@ -1,5 +1,6 @@
 # Activos
 - [ ] Como un usuario cualquiera, quiero crear un gasto recurrente (mensual), asociado a una empresa proveedora.
+- [ ] Que cuando se cree un movimiento para pagar una cuota, la cuenta de debito sea automáticamente la de ese cliente, y que la fecha supuesta se herede de la cuota.
 
 # Features a implementar
 - [ ] Como cualquier tipo de usuario, quiero cargar una factura y un recibo asociados a un cobro.
@@ -8,6 +9,7 @@
 - [ ] Como usuario comercial, quiero cargar los productos que contrata un cliente.
 - [ ] Como usuario comercial, quiero cargar una bonificación que se le dio al cliente.
 - [ ] Como usuario administrativo, quiero ver los cobros que hay que hacer, en función de los cobros de los clientes.
+- [ ] Paginacion
 
 # Done
 - [x] Como usuario comercial, quiero cargar los pagos recurrentes que tiene que hacer un cliente, asociado a su producto.

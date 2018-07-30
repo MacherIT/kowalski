@@ -8,6 +8,7 @@
 #  cuenta_credito_type :string
 #  cuenta_debito_id    :bigint(8)
 #  cuenta_debito_type  :string
+#  cuota_id            :bigint(8)
 #  fecha_efectiva      :date
 #  fecha_supuesta      :date
 #  hecha               :boolean
@@ -19,14 +20,24 @@
 #
 #  index_movimientos_on_cuenta_credito_type_and_cuenta_credito_id  (cuenta_credito_type,cuenta_credito_id)
 #  index_movimientos_on_cuenta_debito_type_and_cuenta_debito_id    (cuenta_debito_type,cuenta_debito_id)
+#  index_movimientos_on_cuota_id                                   (cuota_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (cuota_id => cuotas.id)
 #
 
 class MovimientosController < ApplicationController
   before_action :set_movimiento, only: %i[show edit update destroy]
 
+  # Para permitir usar herencia en controlador
+  def movimientos
+    Movimiento.page(params[:page])
+  end
+
   # GET /movimientos
   def index
-    @movimientos = Movimiento.page(params[:page])
+    @movimientos = movimientos
   end
 
   # GET /movimientos/1
@@ -35,7 +46,7 @@ class MovimientosController < ApplicationController
 
   # GET /movimientos/new
   def new
-    @movimiento = Movimiento.new
+    @movimiento = Movimiento.new(cuota_id: params[:cuota_id])
   end
 
   # GET /movimientos/1/edit
@@ -45,8 +56,8 @@ class MovimientosController < ApplicationController
   # POST /movimientos
   def create
     @movimiento = Movimiento.new(movimiento_params)
-
     if @movimiento.save
+      @movimiento.cuota.recalcular_pagos if @movimiento.cuota.present?
       redirect_to @movimiento, notice: "Movimiento fue creado satisfactoriamente."
     else
       render :new
@@ -56,6 +67,7 @@ class MovimientosController < ApplicationController
   # PATCH/PUT /movimientos/1
   def update
     if @movimiento.update(movimiento_params)
+      @movimiento.cuota.recalcular_pagos if @movimiento.cuota.present?
       redirect_to @movimiento, notice: "Movimiento fue guardado satisfactoriamente."
     else
       render :edit
@@ -77,7 +89,7 @@ class MovimientosController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def movimiento_params
-    params.require(:movimiento).permit(:cuenta_debito_id, :cuenta_credito_id, :cuenta_debito_type, :cuenta_credito_type, :concepto, :fecha_supuesta, :fecha_efectiva, :hecha, :monto)
+    params.require(:movimiento).permit(:cuenta_debito_id, :cuenta_credito_id, :cuenta_debito_type, :cuenta_credito_type, :concepto, :fecha_supuesta, :fecha_efectiva, :hecha, :monto, :cuota_id)
   end
 
   # Get type of Cuenta with which to interact

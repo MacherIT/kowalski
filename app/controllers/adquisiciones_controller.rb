@@ -1,3 +1,29 @@
+# == Schema Information
+#
+# Table name: adquisiciones
+#
+#  comentarios :string
+#  created_at  :datetime         not null
+#  empresa_id  :bigint(8)        not null
+#  fin         :date
+#  id          :bigint(8)        not null, primary key
+#  inicio      :date
+#  precio      :decimal(, )      default(0.0), not null
+#  producto_id :bigint(8)        not null
+#  tipo_pago   :integer          default(0), not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_adquisiciones_on_empresa_id   (empresa_id)
+#  index_adquisiciones_on_producto_id  (producto_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (empresa_id => empresas.id)
+#  fk_rails_...  (producto_id => productos.id)
+#
+
 class AdquisicionesController < ApplicationController
   before_action :set_adquisicion, only: %i[show edit update destroy]
   before_action :set_empresa, only: %i[new]
@@ -52,7 +78,7 @@ class AdquisicionesController < ApplicationController
   def destroy
     @empresa = @adquisicion.empresa
     @adquisicion.destroy
-    redirect_to adquisiciones_url, notice: "Adquisición fue eliminada satisfactoriamente."
+    redirect_to empresa_adquisiciones_path(@empresa), notice: "Adquisición fue eliminada satisfactoriamente."
   end
 
   private
@@ -63,22 +89,25 @@ class AdquisicionesController < ApplicationController
   def crear_cuotas
     case params[:adquisicion][:tipo_pago].to_s
     when TIPOS_PAGO[:unico].to_s
+      @adquisicion.cuotas.destroy_all
       cuotas = params[:cant_cuotas]
+      monto_cuota = @adquisicion.precio / cuotas.to_d
       (cuotas.to_i - @adquisicion.cuotas.count).times do
-        @adquisicion.cuotas.create
+        @adquisicion.cuotas.create(monto: monto_cuota)
       end
     when TIPOS_PAGO[:recurrente].to_s
+      @adquisicion.cuotas.destroy_all
       meses = params[:cant_meses]
+      hoy = Time.zone.today
       dia = params[:dia_del_mes]
-      hoy = Time.zone.today.day
       mes = Time.zone.today.month
       ano = Time.zone.today.year
-      hoy.to_s > dia ? mes += 1 : nil
-      @adquisicion.cuotas.destroy_all
+      fecha = Date.new(ano, mes, dia.to_i)
+      hoy > fecha ? fecha += 1.month : nil
       meses.to_i.times do |i|
-        fecha = Date.new(ano, mes, dia.to_i)
         @adquisicion.cuotas.create(concepto: "Cuota #{i + 1}", fecha_vencimiento: fecha, monto: params[:adquisicion][:precio])
-        mes += 1
+        fecha += 1.month
+        # mes += 1
       end
     end
     # params[:adquisicion].delete(:cuotas_attributes)
@@ -88,8 +117,9 @@ class AdquisicionesController < ApplicationController
 
   # No se podra detruir si tiene cuotas asociadas
   def check_cuotas
-    redirect_to @adquisicion unless @adquisicion.cuotas.none?
+    return if @adquisicion.cuotas.none?
     flash[:alert] = "No se puede eliminar porque tiene cuotas asociadas. Puede darle una fecha de finalización a esta adquisición. Si realmente quiere borrarla, elimine primero las cuotas asociadas."
+    redirect_to @adquisicion
   end
 
   # Si no esta seteada la empresa, redirige a root

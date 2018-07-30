@@ -8,6 +8,7 @@
 #  fecha_vencimiento :date
 #  id                :bigint(8)        not null, primary key
 #  monto             :decimal(, )      default(0.0), not null
+#  pagada            :boolean          default(FALSE)
 #  updated_at        :datetime         not null
 #
 # Indexes

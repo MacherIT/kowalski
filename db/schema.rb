@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_27_153634) do
+ActiveRecord::Schema.define(version: 2018_07_30_144731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2018_07_27_153634) do
     t.string "concepto", default: "Cuota única", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "pagada", default: false
     t.index ["adquisicion_id"], name: "index_cuotas_on_adquisicion_id"
   end
 
@@ -126,8 +127,10 @@ ActiveRecord::Schema.define(version: 2018_07_27_153634) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "monto", default: "0.0", null: false
+    t.bigint "cuota_id"
     t.index ["cuenta_credito_type", "cuenta_credito_id"], name: "index_movimientos_on_cuenta_credito_type_and_cuenta_credito_id"
     t.index ["cuenta_debito_type", "cuenta_debito_id"], name: "index_movimientos_on_cuenta_debito_type_and_cuenta_debito_id"
+    t.index ["cuota_id"], name: "index_movimientos_on_cuota_id"
   end
 
   create_table "productos", force: :cascade do |t|
@@ -164,4 +167,5 @@ ActiveRecord::Schema.define(version: 2018_07_27_153634) do
   add_foreign_key "cuentas_proveedores", "empresas"
   add_foreign_key "cuentas_sueldos", "empleados"
   add_foreign_key "cuotas", "adquisiciones"
+  add_foreign_key "movimientos", "cuotas"
 end

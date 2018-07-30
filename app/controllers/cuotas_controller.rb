@@ -8,6 +8,7 @@
 #  fecha_vencimiento :date
 #  id                :bigint(8)        not null, primary key
 #  monto             :decimal(, )      default(0.0), not null
+#  pagada            :boolean          default(FALSE)
 #  updated_at        :datetime         not null
 #
 # Indexes
@@ -45,7 +46,7 @@ class CuotasController < ApplicationController
     @cuota = Cuota.new(cuota_params)
 
     if @cuota.save
-      redirect_to @cuota, notice: 'Cuota fue creado satisfactoriamente.'
+      redirect_to @cuota, notice: 'Cuota fue creada satisfactoriamente.'
     else
       render :new
     end
@@ -54,7 +55,7 @@ class CuotasController < ApplicationController
   # PATCH/PUT /cuotas/1
   def update
     if @cuota.update(cuota_params)
-      redirect_to @cuota, notice: 'Cuota fue guardado satisfactoriamente.'
+      redirect_to @cuota, notice: 'Cuota fue guardads satisfactoriamente.'
     else
       render :edit
     end
@@ -62,8 +63,9 @@ class CuotasController < ApplicationController
 
   # DELETE /cuotas/1
   def destroy
+    @adquisicion = @cuota.adquisicion
     @cuota.destroy
-    redirect_to cuotas_url, notice: 'Cuota fue eliminado satisfactoriamente.'
+    redirect_back fallback_location: @adquisicion, notice: 'Cuota fue eliminads satisfactoriamente.'
   end
 
   private

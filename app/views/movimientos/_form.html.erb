@@ -2,6 +2,8 @@
 
 <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
 
+<%= f.hidden_field :cuota_id %>
+
 <!-- TODO: Ordenar esto con FormBuilder -->
 <%= f.select :cuenta_debito_type, options_for_select({ "Propia" => "CuentaPropia", "Gasto" => "CuentaGasto", "Sueldo" => "CuentaSueldo", "Proveedor" => "CuentaProveedor", "Cliente" => "CuentaCliente" }, "Cuenta propia"), label: "Tipo de cuenta de débito" %>
 

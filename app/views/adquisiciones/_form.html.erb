@@ -33,7 +33,7 @@
     <p>La cuota de cada mes será creada automáticamente para un día específico</p>
     <div class="form-group">
       <%= label :cant_meses, "Cantidad de meses" %>
-      <%= number_field_tag :cant_meses, nil, value: @adquisicion.cuotas.count || 6, in: 3..12 %>
+      <%= number_field_tag :cant_meses, nil, value: @adquisicion.cuotas.count > 0 ? @adquisicion.cuotas.count : 6, in: 3..12 %>
     </div>
     <div class="form-group">
       <%= label :dia_del_mes, "Día de cobro" %>

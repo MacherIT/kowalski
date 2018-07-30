@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
-  resources :cuotas
+  # Paginacion
+  concern :paginatable do
+    get "(page/:page)", action: :index, on: :collection, as: ""
+  end
+
+  # Usuarios
   devise_for :users
+
+  # Solo para usuarios autenticados (todo el sitio)
   authenticated :user do
     resources :empresas do
       resources :adquisiciones
+    end
+    # resources :cuotas
+    resources :cuotas do
+      resources :movimientos, controller: "cuota_movimientos", concerns: :paginatable
     end
     resources :adquisiciones
     resources :cuentas_gastos
@@ -12,21 +23,16 @@ Rails.application.routes.draw do
     resources :empleados
     resources :cuentas_propias
     resources :duenos
-
-    concern :paginatable do
-      get "(page/:page)", action: :index, on: :collection, as: ""
-    end
     resources :movimientos, concerns: :paginatable
-
     mount Sidekiq::Web => "/sidekiq" # monitoring console
-
     root to: "movimientos#index" # , as: :authenticated_root
   end
 
-  # root to: "movimientos#index"
+  # Si no esta autenicado
   root to: redirect("/users/sign_in")
 
-  # root "movimientos#index"
+  # Errores de ruteo
   match "*unmatched", to: "errors#route_not_found", via: :all
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

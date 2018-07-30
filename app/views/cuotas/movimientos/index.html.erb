@@ -1,0 +1,51 @@
+<% provide(:title, "Lista de movimientos") %>
+<% provide(:page_subhead, "#{@cuota.concepto} de #{@cuota.adquisicion.producto.nombre} para #{@cuota.empresa.nombre} - #{@cuota.fecha_vencimiento}") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Fecha supuesta</th>
+      <th>Fecha efectiva</th>
+      <th>Cuenta debito</th>
+      <th>Cuenta credito</th>
+      <th>Concepto</th>
+      <th>Monto</th>
+      <th>Hecha</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movimientos.each do |movimiento| %>
+      <tr>
+        <td><%= movimiento.fecha_supuesta %></td>
+        <td><%= movimiento.fecha_efectiva %></td>
+        <td><%= movimiento.cuenta_debito.nombre %></td>
+        <td><%= movimiento.cuenta_credito.nombre %></td>
+        <td><%= movimiento.concepto %></td>
+        <td><%= movimiento.monto %></td>
+        <td><%= movimiento.hecha %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to movimiento, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_movimiento_path(movimiento), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to movimiento, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este movimiento?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @movimientos, remote: true %>
+
+<br>
+
+<%= link_to new_cuota_movimiento_path, data: { cuota_id: @cuota.id }, class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nuevo Movimiento") %>
+<% end %>
