@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_144731) do
+ActiveRecord::Schema.define(version: 2018_07_31_184414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,9 @@ ActiveRecord::Schema.define(version: 2018_07_30_144731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "pagada", default: false
+    t.bigint "servicio_id"
     t.index ["adquisicion_id"], name: "index_cuotas_on_adquisicion_id"
+    t.index ["servicio_id"], name: "index_cuotas_on_servicio_id"
   end
 
   create_table "duenos", force: :cascade do |t|
@@ -142,6 +144,17 @@ ActiveRecord::Schema.define(version: 2018_07_30_144731) do
     t.index ["nombre"], name: "index_productos_on_nombre"
   end
 
+  create_table "servicios", force: :cascade do |t|
+    t.decimal "precio", default: "0.0", null: false
+    t.string "comentarios"
+    t.date "inicio"
+    t.date "fin"
+    t.bigint "empresa_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_servicios_on_empresa_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -167,5 +180,7 @@ ActiveRecord::Schema.define(version: 2018_07_30_144731) do
   add_foreign_key "cuentas_proveedores", "empresas"
   add_foreign_key "cuentas_sueldos", "empleados"
   add_foreign_key "cuotas", "adquisiciones"
+  add_foreign_key "cuotas", "servicios"
   add_foreign_key "movimientos", "cuotas"
+  add_foreign_key "servicios", "empresas"
 end

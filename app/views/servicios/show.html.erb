@@ -1,0 +1,33 @@
+<% provide(:title) do %>
+  Servicio #<%= @servicio.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Precio</th>
+      <td><%= number_to_currency(@servicio.precio) %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Comentarios</th>
+      <td><%= @servicio.comentarios %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Empresa</th>
+      <td><%= link_to @servicio.empresa.nombre, empresa_path(@servicio.empresa) %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Inicio</th>
+      <td><%= @servicio.inicio %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Fin</th>
+      <td><%= @servicio.fin %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Editar", edit_servicio_path(@servicio), class: "btn btn-primary" %>
+  <%= link_to "Atrás", servicios_path, class: "btn btn-link" %>
+</p>

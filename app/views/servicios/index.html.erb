@@ -1,0 +1,44 @@
+<% provide(:title, "Lista de servicios de #{@empresa.nombre}") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Precio</th>
+      <th>Comentarios</th>
+      <th>Empresa</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @servicios.each do |servicio| %>
+      <tr>
+        <td><%= number_to_currency(servicio.precio) %></td>
+        <td><%= servicio.comentarios %></td>
+        <td><%= servicio.empresa.nombre %></td>
+        <td><%= servicio.inicio %></td>
+        <td><%= servicio.fin %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to servicio, class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", text: "Ver") %>
+            <% end %>
+            <%= link_to edit_servicio_path(servicio), class: "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", text: "Editar") %>
+            <% end %>
+            <%= link_to servicio, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este servicio?" } do %>
+              <%= fa_icon("trash-o", text: "Eliminar") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_empresa_servicio_path(@empresa), class: "btn btn-default" do %>
+  <%= fa_icon("plus", text: "Nuevo Servicio") %>
+<% end %>

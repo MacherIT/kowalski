@@ -1,0 +1,7 @@
+<% @servicio.empresa.present?? provide(:title, "Nuevo servicio de #{@servicio.empresa.nombre}") : provide(:title, "Nueva adquisición") %>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= render "form" %>
+  </div>
+</div>

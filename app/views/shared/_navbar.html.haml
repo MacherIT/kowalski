@@ -10,7 +10,7 @@
     .navbar-collapse.collapse
       - if user_signed_in?
         %ul.nav.navbar-nav
-          = navbar_link_to("Inicio", root_path, active_when: { controller: "home" })
+          -# = navbar_link_to("Inicio", root_path, active_when: { controller: "home" })
           = navbar_link_to("Nuevo movimiento", new_movimiento_path)
           = navbar_link_to("Empleados", empleados_path)
           = navbar_link_to("Empresas", empresas_path)

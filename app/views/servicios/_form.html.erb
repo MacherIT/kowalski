@@ -1,0 +1,19 @@
+<%= bootstrap_form_for(@servicio) do |f| %>
+
+  <%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+  <% unless @servicio.persisted? %>
+    <%= f.hidden_field :empresa_id, value: @empresa.id %>
+  <% else %>
+    <h4><%= @servicio.empresa.nombre %></h4>
+  <% end %>
+
+  <%= f.text_field :precio %>
+  <%= f.text_field :comentarios %>
+  <%= f.date_select :inicio %>
+  <%= f.date_select :fin %>
+
+  <%= f.primary %>
+  <%= link_to "Atrás", servicios_path, class: "btn btn-link" %>
+
+<% end %>

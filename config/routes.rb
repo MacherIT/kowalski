@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :servicios
   # Paginacion
   concern :paginatable do
     get "(page/:page)", action: :index, on: :collection, as: ""
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   authenticated :user do
     resources :empresas do
       resources :adquisiciones
+      resources :servicios
     end
     # resources :cuotas
     resources :cuotas do

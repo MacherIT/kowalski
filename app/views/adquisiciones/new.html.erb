@@ -1,4 +1,4 @@
-<% @empresa.present?? provide(:title, "Nueva adquisición de #{@empresa.nombre}") : provide(:title, "Nueva adquisición") %>
+<% @adquisicion.empresa.present?? provide(:title, "Nueva adquisición de #{@adquisicion.empresa.nombre}") : provide(:title, "Nueva adquisición") %>
 
 <div class="row">
   <div class="col-md-8">

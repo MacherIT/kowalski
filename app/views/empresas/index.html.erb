@@ -26,6 +26,17 @@
             <% end %>
         </td>
         <td>
+          <% num_servs = empresa.servicios.count
+            case num_servs
+            when 0 %>
+              0 activos
+            <% when 1 %>
+              <%= link_to "#{num_servs} activos", adquisicion_path(empresa.servicios.first) %>
+            <% when 2 %>
+              <%= link_to "#{num_servs} activos", empresa_servicios_path(empresa) %>
+            <% end %>
+        </td>
+        <td>
           <div class="btn-group">
             <%= link_to empresa, class: "btn btn-xs btn-default" do %>
               <%= fa_icon("eye", text: "Ver") %>
@@ -38,6 +49,9 @@
             <% end %>
             <%= link_to new_empresa_adquisicion_path(empresa), class: "btn btn-xs btn-success" do %>
               <%= fa_icon("plus", text: "Nueva adquisición") %>
+            <% end %>
+            <%= link_to new_empresa_servicio_path(empresa), class: "btn btn-xs btn-success" do %>
+              <%= fa_icon("plus", text: "Nuevo servicio") %>
             <% end %>
           </div>
       </tr>
