@@ -35,7 +35,7 @@
             <%= link_to cuota, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este cuota?" } do %>
               <%= fa_icon("plus", text: "Eliminar") %>
             <% end %>
-            <%= link_to new_cuota_movimiento_path(cuota, params: { movimiento: { cuota_id: cuota.id, cuenta_debito_type: 'CuentaCliente', cuenta_debito_id: cuota.adquisicion.empresa.cuentas_clientes.first.id, fecha_supuesta: cuota.fecha_vencimiento } } ), class: "btn btn-xs btn-success" do %>
+            <%= link_to new_cuota_movimiento_path(cuota, params: { movimiento: { cuota_id: cuota.id, cuenta_debito_type: 'CuentaCliente', cuenta_debito_id: cuota.adquisicion.empresa.cuentas_clientes.first.id, cuenta_credito_type: 'CuentaPropia', fecha_supuesta: cuota.fecha_vencimiento } } ), class: "btn btn-xs btn-success" do %>
               <%= fa_icon("plus", text: "Pago") %>
             <% end %>
           </div>

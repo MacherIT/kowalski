@@ -25,6 +25,10 @@
       <td><%= @cuota.fecha_vencimiento %></td>
     </tr>
     <tr>
+      <th class="col-sm-2">Total abonado</th>
+      <td><%= number_to_currency(@cuota.total_abonado) %></td>
+    </tr>
+    <tr>
       <th class="col-sm-2">Pagada completamente</th>
       <td><%= @cuota.pagada?? "Sí" : "No" %></td>
     </tr>
