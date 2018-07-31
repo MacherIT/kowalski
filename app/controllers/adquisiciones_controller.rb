@@ -92,8 +92,8 @@ class AdquisicionesController < ApplicationController
       @adquisicion.cuotas.destroy_all
       cuotas = params[:cant_cuotas]
       monto_cuota = @adquisicion.precio / cuotas.to_d
-      (cuotas.to_i - @adquisicion.cuotas.count).times do
-        @adquisicion.cuotas.create(monto: monto_cuota)
+      cuotas.to_i.times do |i|
+        @adquisicion.cuotas.create(monto: monto_cuota, concepto: "Cuota #{i}")
       end
     when TIPOS_PAGO[:recurrente].to_s
       @adquisicion.cuotas.destroy_all

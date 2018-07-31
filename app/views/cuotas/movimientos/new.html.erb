@@ -1,0 +1,8 @@
+<% provide(:title, "Nuevo movimiento") %>
+<% provide(:page_subhead, "Se debita de: #{@movimiento.cuenta_debito_type.constantize.find(@movimiento.cuenta_debito_id).nombre}. Para pagar cuota de #{number_to_currency(@movimiento.cuota.monto)}.") %>
+
+<div class="row">
+  <div class="col-md-8">
+    <%= render "cuotas/movimientos/form" %>
+  </div>
+</div>

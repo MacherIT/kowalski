@@ -8,4 +8,9 @@ class CuotaMovimientosController < MovimientosController
     @cuota = Cuota.find(params[:cuota_id])
     render "cuotas/movimientos/index"
   end
+
+  def new
+    @movimiento = Movimiento.new(movimiento_params)
+    render "cuotas/movimientos/new"
+  end
 end

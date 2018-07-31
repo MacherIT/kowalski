@@ -37,5 +37,8 @@
 
 <p>
   <%= link_to "Editar", edit_movimiento_path(@movimiento), class: "btn btn-primary" %>
+  <% if @movimiento.cuota.present? %>
+    <%= link_to "Ver cuota", cuota_path(@movimiento.cuota), class: "btn btn-link" %>
+  <% end %>
   <%= link_to "Atrás", movimientos_path, class: "btn btn-link" %>
 </p>

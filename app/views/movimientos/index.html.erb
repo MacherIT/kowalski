@@ -22,7 +22,7 @@
         <td><%= movimiento.cuenta_debito.nombre %></td>
         <td><%= movimiento.cuenta_credito.nombre %></td>
         <td><%= movimiento.concepto %></td>
-        <td><%= movimiento.monto %></td>
+        <td><%= number_to_currency(movimiento.monto) %></td>
         <td><%= movimiento.hecha %></td>
         <td>
           <div class="btn-group">

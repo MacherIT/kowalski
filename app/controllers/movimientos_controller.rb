@@ -46,7 +46,7 @@ class MovimientosController < ApplicationController
 
   # GET /movimientos/new
   def new
-    @movimiento = Movimiento.new(cuota_id: params[:cuota_id])
+    @movimiento = Movimiento.new(params)
   end
 
   # GET /movimientos/1/edit

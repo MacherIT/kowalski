@@ -20,6 +20,7 @@
 
 class Empresa < ApplicationRecord
   has_many :adquisiciones, dependent: :destroy
+  has_many :cuentas_clientes, dependent: :destroy
 
   validate :cuit_valido_0
   validate :cuit_valido_1

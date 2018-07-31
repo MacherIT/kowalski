@@ -14,7 +14,17 @@
       <tr>
         <td><%= empresa.nombre %></td>
         <td><%= empresa.cuit %></td>
-        <td><%= link_to "#{empresa.adquisiciones.count} activas", empresa_adquisiciones_path(empresa)%></td>
+        <td>
+          <% num_adq = empresa.adquisiciones.count
+            case num_adq
+            when 0 %>
+              0 activas
+            <% when 1 %>
+              <%= link_to "#{num_adq} activas", adquisicion_path(empresa.adquisiciones.first) %>
+            <% when 2 %>
+              <%= link_to "#{num_adq} activas", empresa_adquisiciones_path(empresa) %>
+            <% end %>
+        </td>
         <td>
           <div class="btn-group">
             <%= link_to empresa, class: "btn btn-xs btn-default" do %>

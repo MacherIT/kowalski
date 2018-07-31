@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <th class="col-sm-2">Monto</th>
-      <td><%= @cuota.monto %></td>
+      <td><%= number_to_currency(@cuota.monto) %></td>
     </tr>
     <tr>
       <th class="col-sm-2">Fecha vencimiento</th>

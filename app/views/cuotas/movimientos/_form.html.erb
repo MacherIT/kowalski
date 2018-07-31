@@ -1,0 +1,25 @@
+<%= bootstrap_form_for(@movimiento) do |f| %>
+
+<%= f.alert_message "Han ocurrido los siguientes problemas:" %>
+
+<%= f.hidden_field :cuota_id %>
+<%= f.hidden_field :cuenta_debito_type %>
+<%= f.hidden_field :cuenta_debito_id %>
+
+<!-- TODO: Ordenar esto con FormBuilder -->
+<%= f.select :cuenta_credito_type, options_for_select({ "Propia" => "CuentaPropia", "Gasto" => "CuentaGasto", "Sueldo" => "CuentaSueldo", "Proveedor" => "CuentaProveedor", "Cliente" => "CuentaCliente" }, "Cuenta propia"), label: "Tipo de cuenta de crédito" %>
+
+<%= f.select :cuenta_credito_id, options_for_select(cuentas_options_for_select('credito')), include_blank: true, label: "Cuenta de crédito" %>
+
+<%= f.number_field :monto, label: "Monto ($)" %>
+
+<%= f.text_field :concepto, value: "Pago de cuota #{@movimiento.cuota.id}" %>
+<p>Fecha de vencimiento de la cuota: <%= @movimiento.cuota.fecha_vencimiento %></p>
+<%= f.date_select :fecha_supuesta %>
+<%= f.date_select :fecha_efectiva %>
+<%= f.check_box :hecha, checked: true%>
+
+<%= f.primary %>
+<%= link_to "Atrás", movimientos_path, class: "btn btn-link" %>
+
+<% end %>
