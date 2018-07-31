@@ -28,7 +28,7 @@ class CuotasController < ApplicationController
 
   # GET /cuotas
   def index
-    @cuotas = Cuota.all
+    @cuotas = Cuota.page(params[:page]).per(20)
   end
 
   # GET /cuotas/1

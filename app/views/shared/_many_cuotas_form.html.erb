@@ -1,0 +1,25 @@
+
+  <h3>Cuotas</h3>
+  <!-- Caso de pago unico -->
+  <div class="field cuotas_pago" id="cuotas_pago_unico">
+    <p style="font-style: italic;">
+      Para cambiar la cantidad de cuotas, ingresar la cantidad deseada, guardar, y volver para editar los datos de cada una.
+    </p>
+    <div class="form-group">
+      <%= label :cant_cuotas, "Cantidad de cuotas" %>
+      <%= number_field_tag :cant_cuotas, nil, value: @object.cuotas.count, in: @object.cuotas.count..24 %>
+    </div>
+  </div>
+
+  <!-- Caso de pago recurrente -->
+  <div class="field cuotas_pago" id="cuotas_pago_recurrente">
+    <p>La cuota de cada mes será creada automáticamente para un día específico</p>
+    <div class="form-group">
+      <%= label :cant_meses, "Cantidad de meses" %>
+      <%= number_field_tag :cant_meses, nil, value: @object.cuotas.count > 0 ? @object.cuotas.count : 6, in: 3..12 %>
+    </div>
+    <div class="form-group">
+      <%= label :dia_del_mes, "Día de cobro" %>
+      <%= number_field_tag :dia_del_mes, nil, value: 1, in: 1..30 %>
+    </div>
+  </div>

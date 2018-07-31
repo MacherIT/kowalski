@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th>Empresa</th>
-      <th>Adquisición</th>
+      <th>Adquisición o Servicio</th>
       <th>Concepto</th>
       <th>Fecha vencimiento</th>
       <th>Pagos</th>
@@ -16,8 +16,13 @@
   <tbody>
     <% @cuotas.each do |cuota| %>
       <tr>
-        <td><%= cuota.adquisicion.empresa.nombre %></td>
-        <td><%= cuota.adquisicion.producto.nombre %></td>
+        <% if cuota.adquisicion.present? %>
+          <td><%= cuota.adquisicion.empresa.nombre %></td>
+          <td><%= cuota.adquisicion.producto.nombre %></td>
+        <% elsif cuota.servicio.present? %>
+          <td><%= cuota.servicio.empresa.nombre %></td>
+          <td><%= cuota.servicio.comentarios %></td>
+        <% end %>
         <td><%= cuota.concepto %></td>
         <td><%= cuota.fecha_vencimiento %></td>
         <td><%= link_to "#{cuota.movimientos.count} pagos", cuota_movimientos_path(cuota) %></td>
@@ -35,8 +40,14 @@
             <%= link_to cuota, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "¿Seguro de eliminar este cuota?" } do %>
               <%= fa_icon("plus", text: "Eliminar") %>
             <% end %>
-            <%= link_to new_cuota_movimiento_path(cuota, params: { movimiento: { cuota_id: cuota.id, cuenta_debito_type: 'CuentaCliente', cuenta_debito_id: cuota.adquisicion.empresa.cuentas_clientes.first.id, cuenta_credito_type: 'CuentaPropia', fecha_supuesta: cuota.fecha_vencimiento } } ), class: "btn btn-xs btn-success" do %>
-              <%= fa_icon("plus", text: "Pago") %>
+            <% if cuota.adquisicion.present? %>
+              <%= link_to new_cuota_movimiento_path(cuota, params: { movimiento: { cuota_id: cuota.id, cuenta_debito_type: 'CuentaCliente', cuenta_debito_id: cuota.adquisicion.empresa.cuentas_clientes.first.id, cuenta_credito_type: 'CuentaPropia', fecha_supuesta: cuota.fecha_vencimiento } } ), class: "btn btn-xs btn-success" do %>
+                <%= fa_icon("plus", text: "Pago") %>
+              <% end %>
+            <% elsif cuota.servicio.present? %>
+              <%= link_to new_cuota_movimiento_path(cuota, params: { movimiento: { cuota_id: cuota.id, cuenta_credito_type: 'CuentaProveedor', cuenta_credito_id: cuota.servicio.empresa.cuentas_proveedores.first.id, cuenta_debito_type: 'CuentaPropia', fecha_supuesta: cuota.fecha_vencimiento } } ), class: "btn btn-xs btn-success" do %>
+                <%= fa_icon("plus", text: "Pago") %>
+              <% end %>
             <% end %>
           </div>
       </tr>

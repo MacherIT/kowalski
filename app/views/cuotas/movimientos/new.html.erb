@@ -1,5 +1,9 @@
 <% provide(:title, "Nuevo movimiento") %>
-<% provide(:page_subhead, "Se debita de: #{@movimiento.cuenta_debito_type.constantize.find(@movimiento.cuenta_debito_id).nombre}. Para pagar cuota de #{number_to_currency(@movimiento.cuota.monto)}.") %>
+<% if !@movimiento.cuenta_debito_id.blank? %>
+  <% provide(:page_subhead, "Se debita de: #{@movimiento.cuenta_debito_type.constantize.find(@movimiento.cuenta_debito_id).nombre}. Para pagar cuota de #{number_to_currency(@movimiento.cuota.monto)}.") %>
+<% elsif !@movimiento.cuenta_credito_id.blank? %>
+  <% provide(:page_subhead, "Se acredita en: #{@movimiento.cuenta_credito_type.constantize.find(@movimiento.cuenta_credito_id).nombre}. Para pagar cuota de #{number_to_currency(@movimiento.cuota.monto)}.") %>
+<% end %>
 
 <div class="row">
   <div class="col-md-8">

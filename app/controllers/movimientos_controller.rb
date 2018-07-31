@@ -32,7 +32,7 @@ class MovimientosController < ApplicationController
 
   # Para permitir usar herencia en controlador
   def movimientos
-    Movimiento.page(params[:page])
+    Movimiento.page(params[:page]).per(20)
   end
 
   # GET /movimientos

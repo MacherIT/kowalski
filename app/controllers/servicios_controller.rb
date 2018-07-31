@@ -52,6 +52,7 @@ class ServiciosController < ApplicationController
     @servicio = Servicio.new(servicio_params)
 
     if @servicio.save
+      crear_cuotas
       redirect_to @servicio, notice: 'Servicio fue creado satisfactoriamente.'
     else
       render :new
@@ -61,6 +62,7 @@ class ServiciosController < ApplicationController
   # PATCH/PUT /servicios/1
   def update
     if @servicio.update(servicio_params)
+      crear_cuotas
       redirect_to @servicio, notice: 'Servicio fue guardado satisfactoriamente.'
     else
       render :edit
@@ -75,6 +77,28 @@ class ServiciosController < ApplicationController
   end
 
   private
+
+  # rubocop:disable AbcSize
+  # rubocop:disable MethodLength
+  def crear_cuotas
+    @servicio.cuotas.destroy_all
+    hoy = Time.zone.today
+    dia = params[:dia_del_mes]
+    mes = Time.zone.today.month
+    ano = Time.zone.today.year
+    fecha = Date.new(ano, mes, dia.to_i)
+    hoy > fecha ? fecha += 1.month : nil
+    @servicio.fin = @servicio.inicio + 1.year if @servicio.fin.blank?
+    i = 0
+    while fecha < @servicio.fin
+      i += 1
+      @servicio.cuotas.create(concepto: "Cuota #{i + 1}", fecha_vencimiento: fecha, monto: params[:servicio][:precio])
+      fecha += 1.month
+      # params[:servicio].delete(:cuotas_attributes)
+    end
+  end
+  # rubocop:enable AbcSize
+  # rubocop:enable MethodLength
 
   # Use callbacks to share common setup or constraints between actions.
   def set_servicio

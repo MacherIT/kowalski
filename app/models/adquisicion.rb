@@ -28,11 +28,11 @@ class Adquisicion < ApplicationRecord
   belongs_to :empresa
   belongs_to :producto
   has_many :cuotas, dependent: :nullify
-  accepts_nested_attributes_for(
-    :cuotas,
-    reject_if: proc { |attributes| attributes[:monto].blank? },
-    allow_destroy: true
-  )
+  # accepts_nested_attributes_for(
+  #   :cuotas,
+  #   reject_if: proc { |attributes| attributes[:monto].blank? },
+  #   allow_destroy: true
+  # )
   before_destroy :check_cuotas
 
   def tipo_pago_cast

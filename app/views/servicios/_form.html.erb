@@ -13,6 +13,12 @@
   <%= f.date_select :inicio %>
   <%= f.date_select :fin %>
 
+  <div class="field cuotas_pago" id="cuotas_pago_recurrente">
+    <p>La cuota de cada mes será creada automáticamente para un día específico</p>
+    <div class="form-group">
+      <%= label :dia_del_mes, "Día de cobro" %>
+      <%= number_field_tag :dia_del_mes, nil, value: 1, in: 1..30 %>
+    </div>
   <%= f.primary %>
   <%= link_to "Atrás", servicios_path, class: "btn btn-link" %>
 

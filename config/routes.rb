@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :servicios
     end
     # resources :cuotas
-    resources :cuotas do
+    resources :cuotas, concerns: :paginatable do
       resources :movimientos, controller: "cuota_movimientos", concerns: :paginatable
     end
     resources :adquisiciones

@@ -25,4 +25,13 @@
 
 class Servicio < ApplicationRecord
   belongs_to :empresa
+  has_many :cuotas, dependent: :nullify
+  before_destroy :check_cuotas
+
+  private
+
+  # No se podra detruir si tiene cuotas asociadas
+  def check_cuotas
+    throw :abort unless cuotas.none?
+  end
 end

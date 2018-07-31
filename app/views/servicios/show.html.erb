@@ -27,6 +27,14 @@
   </tbody>
 </table>
 
+<h3>Cuotas</h3>
+<% if @servicio.cuotas.any? %>
+  <%= render 'cuotas/index', '@cuotas': @servicio.cuotas %>
+<% else %>
+  <p>No hay cuotas planeadas</p>
+<% end %>
+
+
 <p>
   <%= link_to "Editar", edit_servicio_path(@servicio), class: "btn btn-primary" %>
   <%= link_to "Atrás", servicios_path, class: "btn btn-link" %>

@@ -2,6 +2,8 @@
 
 <%= render 'index', '@cuotas': @cuotas  %>
 
+<%= paginate @cuotas, remote: false %>
+
 <br>
 
 <%= link_to new_cuota_path, class: "btn btn-default" do %>

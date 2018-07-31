@@ -6,11 +6,21 @@
   <tbody>
     <tr>
       <th class="col-sm-2">Empresa</th>
-      <td><%= link_to @cuota.adquisicion.empresa.nombre, empresa_adquisiciones_path(@cuota.adquisicion.empresa) %></td>
+      <% if @cuota.adquisicion.present? %>
+        <td><%= link_to @cuota.adquisicion.empresa.nombre, empresa_adquisiciones_path(@cuota.adquisicion.empresa) %></td>
+      <% elsif @cuota.servicio.present? %>
+        <td><%= link_to @cuota.servicio.empresa.nombre, empresa_servicios_path(@cuota.servicio.empresa) %></td>
+      <% end %>
     </tr>
     <tr>
-      <th class="col-sm-2">Adquisicion</th>
-      <td><%= @cuota.adquisicion.producto.nombre %></td>
+      <th class="col-sm-2">Adquisición o Servicio</th>
+      <td>
+        <% if @cuota.adquisicion.present? %>
+          <%= @cuota.adquisicion.producto.nombre %>
+        <% elsif @cuota.servicio.present? %>
+          <%= @cuota.servicio.comentarios %>
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th class="col-sm-2">Concepto</th>

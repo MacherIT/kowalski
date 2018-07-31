@@ -4,12 +4,16 @@
 
 <%= f.hidden_field :cuota_id %>
 <%= f.hidden_field :cuenta_debito_type %>
-<%= f.hidden_field :cuenta_debito_id %>
 <%= f.hidden_field :cuenta_credito_type %>
 
-<!-- TODO: Ordenar esto con FormBuilder -->
-<%= f.select :cuenta_credito_id, CuentaPropia.options_for_select('credito'), include_blank: true, label: "Cuenta de crédito" %>
+<% if !@movimiento.cuenta_debito_id.blank? %>
+  <%= f.hidden_field :cuenta_debito_id %>
+  <%= f.select :cuenta_credito_id, CuentaPropia.options_for_select('credito'), include_blank: true, label: "Cuenta de crédito" %>
+<% elsif !@movimiento.cuenta_credito_id.blank? %>
+<%= f.hidden_field :cuenta_credito_id %>
+<%= f.select :cuenta_debito_id, CuentaPropia.options_for_select('debito'), include_blank: true, label: "Cuenta de Débito" %>
 
+<% end %>
 <%= f.number_field :monto, label: "Monto ($)" %>
 
 <%= f.text_field :concepto, value: "Pago de cuota #{@movimiento.cuota.id}" %>
