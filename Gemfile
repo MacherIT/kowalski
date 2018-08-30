@@ -26,6 +26,7 @@ gem "haml"
 gem "devise"
 gem 'kaminari'
 gem "cocoon"
+gem 'filterrific'
 
 group :test, :development do
   gem "factory_bot_rails"

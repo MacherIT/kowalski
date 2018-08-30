@@ -29,6 +29,23 @@ class Cuota < ApplicationRecord
   has_one :empresa, through: :adquisicion
   has_many :movimientos, dependent: :nullify
   default_scope { order(fecha_vencimiento: :asc) }
+  scope :with_fecha_comienzo, lambda { |fecha_ini|
+    where("fecha_vencimiento >= ?", fecha_ini)
+  }
+  # scope :with_fecha_fin, -> (fecha_fin) {
+  #   where("fecha_vencimiento <= ?", fecha_fin)
+  # }
+
+  filterrific(
+    default_filter_params: { with_fecha_comienzo: Time.zone.today - 7.days },
+    available_filters: [
+      :with_fecha_comienzo
+      # :sorted_by,
+      # :search_query,
+      # :with_country_id,
+      # :with_created_at_gte
+    ]
+  )
 
   # Devuelve el total abonado
   def total_abonado

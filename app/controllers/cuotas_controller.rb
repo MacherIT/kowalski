@@ -28,7 +28,7 @@ class CuotasController < ApplicationController
 
   # GET /cuotas
   def index
-    @cuotas = Cuota.page(params[:page]).per(20)
+    @cuotas = Cuota.with_fecha_vencimiento(Time.zone.today - 7.days).page(params[:page]).per(20)
   end
 
   # GET /cuotas/1
