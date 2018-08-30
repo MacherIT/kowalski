@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     resources :empleados
     resources :cuentas_propias
     resources :duenos
-    resources :movimientos, concerns: :paginatable
     mount Sidekiq::Web => "/sidekiq" # monitoring console
     root to: "movimientos#index" # , as: :authenticated_root
   end
