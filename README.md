@@ -1,6 +1,10 @@
-# Gema
+# Kowalski
 
-This is a Rails 5 app.
+## Comenzar a usar el proyecto
+1) Copiar el archivo _.env.example_ a _.env_ y cambiar el SECRET_KEY_BASE por el hash generado localmente por el comando ```rake secret```.
+
+2) Copiar el archivo _config/database.example.yml_ a _config/database.yml_ y reemplazar el usuario y password de la DB a las correctas locales.
+
 
 ## Documentation
 
