@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :servicios
   # Paginacion
   concern :paginatable do
     get "(page/:page)", action: :index, on: :collection, as: ""
@@ -14,7 +13,8 @@ Rails.application.routes.draw do
       resources :adquisiciones
       resources :servicios
     end
-    # resources :cuotas
+    resources :movimientos
+    resources :servicios
     resources :cuotas, concerns: :paginatable do
       resources :movimientos, controller: "cuota_movimientos", concerns: :paginatable
     end
